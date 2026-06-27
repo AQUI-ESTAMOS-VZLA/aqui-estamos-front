@@ -50,34 +50,53 @@
       <!-- Add registro -->
       <div class="panel">
         <h3 class="section-title">Añadir un registro</h3>
-        <p class="section-sub">Solo el nombre y el apellido son obligatorios. Lo demás ayuda a localizar y verificar.</p>
+        <p class="section-sub">Nada es obligatorio: si no se conoce el nombre, identifica a la persona con una foto y una descripción. Cuanta más información, más fácil será encontrarla.</p>
         <form id="reg-form" autocomplete="off">
           <div class="grid2">
-            <div class="field"><label for="first_name">Nombre *</label><input type="text" id="first_name" required /></div>
-            <div class="field"><label for="last_name">Apellido *</label><input type="text" id="last_name" required /></div>
+            <div class="field"><label for="first_name">Nombre <span class="muted small">(si se conoce)</span></label><input type="text" id="first_name" /></div>
+            <div class="field"><label for="last_name">Apellido <span class="muted small">(si se conoce)</span></label><input type="text" id="last_name" /></div>
           </div>
           <div class="grid2">
             <div class="field"><label for="approximate_age">Edad aproximada</label><input type="text" id="approximate_age" inputmode="numeric" placeholder="Opcional" /></div>
-            <div class="field"><label for="city">Ciudad / Municipio</label><input type="text" id="city" placeholder="Ej. Caracas" /></div>
-          </div>
-          <div class="grid2">
             <div class="field">
-              <label for="status">Estado</label>
-              <select id="status">
-                <option value="buscada">Buscada por familiares</option>
-                <option value="localizada">Localizada</option>
-                <option value="en_refugio">En refugio</option>
-                <option value="hospitalizada">Hospitalizada</option>
-                <option value="fallecida">Fallecida</option>
+              <label for="sex">Sexo</label>
+              <select id="sex">
+                <option value="">—</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Otro">Otro</option>
               </select>
             </div>
-            <div class="field">
-              <label for="photo">Fotografía principal</label>
-              <div class="file-row">
-                <input type="file" id="photo" accept="image/*" />
-                <img id="photo-preview" class="photo-preview" alt="Vista previa" />
-              </div>
+          </div>
+          <div class="grid2">
+            <div class="field"><label for="city">Ciudad / Municipio</label><input type="text" id="city" placeholder="Ej. Caracas" /></div>
+            <div class="field"><label for="state">Estado (región)</label><input type="text" id="state" placeholder="Ej. Distrito Capital" /></div>
+          </div>
+          <div class="field">
+            <label for="status">Situación</label>
+            <select id="status">
+              <option value="buscada">Buscada por familiares</option>
+              <option value="localizada">Localizada</option>
+              <option value="en_refugio">En refugio</option>
+              <option value="hospitalizada">Hospitalizada</option>
+              <option value="fallecida">Fallecida</option>
+            </select>
+          </div>
+          <div class="field"><label for="clothing">Vestimenta</label><input type="text" id="clothing" placeholder="Ropa que llevaba" /></div>
+          <div class="field"><label for="distinguishing_features">Señas particulares</label><input type="text" id="distinguishing_features" placeholder="Cicatrices, tatuajes, estatura, contextura…" /></div>
+          <div class="field"><label for="last_seen">Visto por última vez</label><input type="text" id="last_seen" placeholder="Fecha y lugar general donde fue visto" /></div>
+
+          <div class="field">
+            <label for="photo">Fotografía principal <span class="muted small">(pública)</span></label>
+            <div class="file-row">
+              <input type="file" id="photo" accept="image/*" />
+              <img id="photo-preview" class="photo-preview" alt="Vista previa" />
             </div>
+          </div>
+          <div class="field">
+            <label for="media">Fotos y videos adicionales <span class="muted small">(privados)</span></label>
+            <input type="file" id="media" accept="image/*,video/*" multiple />
+            <div id="media-preview" class="media-grid"></div>
           </div>
 
           <details class="private-box">

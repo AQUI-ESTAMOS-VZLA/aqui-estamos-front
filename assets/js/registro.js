@@ -78,18 +78,34 @@
   }
   logout.addEventListener('click', function(e){ e.preventDefault(); if(useSupabase){ sb.auth.signOut(); accessToken=''; } else clearToken(); showGate(); });
 
-  // ---- Photo preview ----
+  // ---- Photo + media previews ----
   var photo = $('photo'), preview = $('photo-preview');
   photo.addEventListener('change', function(){ var f=photo.files[0]; if(f){ preview.src=URL.createObjectURL(f); preview.classList.add('show'); } else preview.classList.remove('show'); });
 
+  var mediaInput = $('media'), mediaPreview = $('media-preview');
+  mediaInput.addEventListener('change', function(){
+    mediaPreview.innerHTML = '';
+    Array.prototype.forEach.call(mediaInput.files, function(f){
+      var url = URL.createObjectURL(f);
+      if((f.type||'').indexOf('video')===0) {
+        mediaPreview.insertAdjacentHTML('beforeend','<div class="media-thumb video"><video src="'+url+'" muted></video><span>▶</span></div>');
+      } else {
+        mediaPreview.insertAdjacentHTML('beforeend','<div class="media-thumb"><img src="'+url+'" alt="" /></div>');
+      }
+    });
+  });
+
   // ---- Add registro ----
-  var FIELDS = ['first_name','last_name','approximate_age','city','status','exact_address','gps','facility','phones','emails','family_data','id_document','medical_info','video_url','internal_notes'];
+  var FIELDS = ['first_name','last_name','approximate_age','sex','city','state','status',
+    'clothing','distinguishing_features','last_seen',
+    'exact_address','gps','facility','phones','emails','family_data','id_document','medical_info','video_url','internal_notes'];
   regForm.addEventListener('submit', function(e){
     e.preventDefault();
     var fd = new FormData();
     FIELDS.forEach(function(k){ var el=$(k); if(el) fd.append(k, el.value.trim()); });
     if(photo.files[0]) fd.append('photo', photo.files[0]);
-    regSubmit.disabled = true; alertHtml(regResult,'info','Guardando…');
+    Array.prototype.forEach.call(mediaInput.files, function(f){ fd.append('media', f); });
+    regSubmit.disabled = true; alertHtml(regResult,'info','Guardando… (subiendo archivos)');
     fetch(cfg.API_BASE+'/api/registros',{ method:'POST', headers:authHeaders(), body:fd })
       .then(function(r){ return r.json().then(function(b){ return {ok:r.ok,status:r.status,body:b}; }); })
       .then(function(res){
@@ -97,7 +113,7 @@
         if(!res.ok){ alertHtml(regResult,'error','No se pudo guardar: '+esc((res.body&&res.body.detail)||('Error '+res.status))); return; }
         var v = res.body.registro;
         alertHtml(regResult,'success','Registro <strong>'+esc(v.registro_number)+'</strong> creado: '+esc(v.first_name)+' '+esc(v.last_name)+'.');
-        regForm.reset(); preview.classList.remove('show'); loadList();
+        regForm.reset(); preview.classList.remove('show'); mediaPreview.innerHTML=''; loadList();
       })
       .catch(function(err){ alertHtml(regResult,'error','No se pudo contactar el servidor. ('+err.message+')'); })
       .finally(function(){ regSubmit.disabled = false; });
@@ -113,25 +129,41 @@
   }
 
   function priv(label, value){ return value ? '<div class="row"><span class="k">'+esc(label)+':</span>'+esc(value)+'</div>' : ''; }
+  function fullName(r){ var n=((r.first_name||'')+' '+(r.last_name||'')).trim(); return n || 'Sin identificar'; }
+  function link(label, url){ return url ? '<div class="row"><span class="k">'+esc(label)+':</span><a href="'+esc(url)+'" target="_blank" rel="noopener">abrir</a></div>' : ''; }
+
+  function mediaGallery(media){
+    if(!media || !media.length) return '';
+    return '<div class="media-grid" style="margin-top:.6rem">' + media.map(function(m){
+      if(m.type==='video') return '<a class="media-thumb video" href="'+esc(m.url)+'" target="_blank" rel="noopener"><video src="'+esc(m.url)+'" muted></video><span>▶</span></a>';
+      return '<a class="media-thumb" href="'+esc(m.url)+'" target="_blank" rel="noopener"><img src="'+esc(m.url)+'" alt="" /></a>';
+    }).join('') + '</div>';
+  }
 
   function renderList(){
     var f = (filterEl.value||'').trim().toLowerCase();
     var rows = allRegistros.filter(function(r){
       if(!f) return true;
-      return ((r.first_name||'')+' '+(r.last_name||'')+' '+(r.city||'')+' '+(r.registro_number||'')).toLowerCase().indexOf(f) >= 0;
+      return ((r.first_name||'')+' '+(r.last_name||'')+' '+(r.city||'')+' '+(r.state||'')+' '+(r.registro_number||'')).toLowerCase().indexOf(f) >= 0;
     });
     if(!rows.length){ listEl.innerHTML='<p class="muted small">Sin registros'+(f?' para “'+esc(f)+'”':'')+'.</p>'; return; }
     listEl.innerHTML = rows.map(function(r){
       var photo = r.photo_url ? '<img class="photo" src="'+esc(r.photo_url)+'" alt="Foto" />' : '<div class="photo"></div>';
       var st = STATUS[r.status]||r.status;
+      var loc = [r.city, r.state].filter(Boolean).join(', ');
       return '<div class="card">'+photo+'<div class="info" style="width:100%">'+
-        '<h3 style="margin-bottom:.4rem">'+esc(r.first_name)+' '+esc(r.last_name)+'</h3>'+
+        '<h3 style="margin-bottom:.4rem">'+esc(fullName(r))+'</h3>'+
         '<div style="margin-bottom:.5rem"><span class="status-pill s-'+(STATUS_CLS[r.status]||'muted')+'">'+esc(st)+'</span></div>'+
-        priv('N.º', r.registro_number)+priv('Ciudad', r.city)+(r.approximate_age?priv('Edad', r.approximate_age+' años'):'')+
+        priv('N.º', r.registro_number)+
+        (r.approximate_age?priv('Edad', r.approximate_age+' años'):'')+priv('Sexo', r.sex)+
+        priv('Ubicación', loc)+priv('Vestimenta', r.clothing)+priv('Señas', r.distinguishing_features)+
+        priv('Visto por última vez', r.last_seen)+
+        '<div class="priv-sep">Privado</div>'+
         priv('Dirección', r.exact_address)+priv('Hospital/Refugio', r.facility)+priv('GPS', r.gps)+
         priv('Teléfonos', r.phones)+priv('Correos', r.emails)+priv('Documento', r.id_document)+
-        priv('Familiares', r.family_data)+priv('Médico', r.medical_info)+priv('Video', r.video_url)+
+        priv('Familiares', r.family_data)+priv('Médico', r.medical_info)+link('Video original', r.video_url)+
         priv('Notas', r.internal_notes)+priv('Registrado por', r.registered_by)+
+        mediaGallery(r.media)+
         '<button class="rm" data-num="'+esc(r.registro_number)+'" style="margin-top:.7rem">Eliminar</button>'+
       '</div></div>';
     }).join('');

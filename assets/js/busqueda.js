@@ -42,14 +42,20 @@
         var photo = v.photo_url
           ? '<img class="photo" src="' + esc(v.photo_url) + '" alt="Foto" />'
           : '<div class="photo"></div>';
+        var name = ((v.first_name || '') + ' ' + (v.last_name || '')).trim() || 'Sin identificar';
+        var loc = [v.city, v.state].filter(Boolean).join(', ');
         return '<div class="card">' + photo +
           '<div class="info">' +
-            '<h3>' + esc(v.first_name) + ' ' + esc(v.last_name) + '</h3>' +
+            '<h3>' + esc(name) + '</h3>' +
             '<div style="margin-bottom:.55rem">' + statusBadge(v.status) + '</div>' +
             row('N.º de registro', v.registro_number) +
-            row('Ciudad', v.city) +
             (v.approximate_age ? row('Edad aprox.', v.approximate_age + ' años') : '') +
-            row('Fecha', v.created_at ? v.created_at.substring(0, 10) : '') +
+            row('Sexo', v.sex) +
+            row('Ubicación', loc) +
+            row('Vestimenta', v.clothing) +
+            row('Señas particulares', v.distinguishing_features) +
+            row('Visto por última vez', v.last_seen) +
+            row('Fecha de registro', v.created_at ? v.created_at.substring(0, 10) : '') +
             '<button class="btn req-contact" data-num="' + esc(v.registro_number) +
               '" style="margin-top:.7rem;width:auto;padding:.5rem 1rem;font-size:.92rem">Solicitar contacto seguro</button>' +
           '</div>' +
