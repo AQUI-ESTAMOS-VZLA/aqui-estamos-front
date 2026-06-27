@@ -20,13 +20,26 @@
     <section id="gate">
       <h2>Acceso restringido</h2>
       <p class="muted small">Solo personas autorizadas pueden registrar y consultar voluntarios.</p>
-      <form id="login-form" autocomplete="off">
+
+      <!-- Supabase magic-link login (per-person) -->
+      <form id="login-email" autocomplete="off" hidden>
+        <div class="field">
+          <label for="admin_email">Correo electrónico</label>
+          <input type="email" id="admin_email" name="admin_email" placeholder="tu@correo.com" required />
+        </div>
+        <button type="submit" class="btn btn-primary" id="login-email-btn">Enviar enlace de acceso</button>
+        <p class="muted small" style="margin-top:.75rem">Te enviaremos un enlace de un solo uso a tu correo para entrar.</p>
+      </form>
+
+      <!-- Shared-token fallback (when Supabase is not configured) -->
+      <form id="login-token" autocomplete="off" hidden>
         <div class="field">
           <label for="admin_token">Clave de acceso</label>
           <input type="password" id="admin_token" name="admin_token" placeholder="••••••••" required />
         </div>
-        <button type="submit" class="btn btn-primary" id="login-btn">Entrar</button>
+        <button type="submit" class="btn btn-primary" id="login-token-btn">Entrar</button>
       </form>
+
       <div id="login-result" aria-live="polite"></div>
     </section>
 
@@ -34,7 +47,8 @@
     <section id="panel" hidden>
       <div class="topbar">
         <span class="badge ok">Sesión de administrador</span>
-        <a href="#" id="logout">Salir</a>
+        <span id="admin-who" class="muted small"></span>
+        <a href="#" id="logout" style="margin-left:auto">Salir</a>
       </div>
 
       <!-- Lookup / verify -->
@@ -86,6 +100,7 @@
     </section>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="assets/js/config.js"></script>
   <script src="assets/js/admin.js"></script>
 </body>

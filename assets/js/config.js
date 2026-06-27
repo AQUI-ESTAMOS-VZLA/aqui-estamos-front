@@ -13,4 +13,11 @@ window.AE_CONFIG = {
   SHARED_FORM_URL: 'https://forms.gle/CeaiBpMKw1AGk9rf8',
 
   INSTAGRAM_URL: 'https://www.instagram.com/aqui.estamos.vnzl',
+
+  // Supabase Auth (admin.<domain> per-person logins). These are PUBLIC values
+  // (the anon key is safe to ship to the browser). Fill them from the
+  // AquiEstamosDev project: Settings -> API. If SUPABASE_ANON_KEY is blank, the
+  // admin page falls back to the shared-token login (useful for local mock dev).
+  SUPABASE_URL: 'https://qycxgscxuvfrspogocvs.supabase.co',
+  SUPABASE_ANON_KEY: '',
 };
