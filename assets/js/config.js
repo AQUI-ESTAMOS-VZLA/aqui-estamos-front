@@ -39,8 +39,9 @@
     ENV: isLocal ? 'local' : (isProd ? 'production' : 'preview'),
     API_BASE: API_BASE,
 
-    // Per requirement #2 the two landing buttons point to the SAME address.
-    SHARED_FORM_URL: 'https://forms.gle/CeaiBpMKw1AGk9rf8',
+    // Landing-page call-to-action forms (Google Forms).
+    REGISTRO_FORM_URL: 'https://forms.gle/CeaiBpMKw1AGk9rf8',  // "Subir un Registro"
+    AYUDAR_FORM_URL: 'https://forms.gle/LUDqmrv8QQ4dmjZh9',     // "Quiero Ayudar"
     INSTAGRAM_URL: 'https://www.instagram.com/aqui.estamos.vnzl',
 
     SUPABASE_URL: SUPABASE.url,
