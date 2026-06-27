@@ -53,7 +53,10 @@
     return useSupabase ? { 'Authorization': 'Bearer ' + accessToken } : { 'x-admin-token': getToken() };
   }
 
-  function showPanel(email) { gate.hidden = true; panel.hidden = false; adminWho.textContent = email || ''; }
+  function showPanel(email) {
+    gate.hidden = true; panel.hidden = false; adminWho.textContent = email || '';
+    loadAdmins();
+  }
   function showGate() {
     panel.hidden = true; gate.hidden = false;
     if (loginEmail) { var i = document.getElementById('admin_email'); if (i) i.value = ''; }
@@ -209,5 +212,83 @@
       })
       .catch(function (err) { alertHtml(resultEl, 'error', 'No se pudo contactar el servidor. (' + err.message + ')'); })
       .finally(function () { submitBtn.disabled = false; });
+  });
+
+  // ---- Manage admins (whitelist other admins) ----------------------------
+  var addAdminForm = document.getElementById('add-admin-form');
+  var addAdminBtn = document.getElementById('add-admin-btn');
+  var addAdminResult = document.getElementById('add-admin-result');
+  var adminsList = document.getElementById('admins-list');
+
+  function loadAdmins() {
+    adminsList.innerHTML = '<div class="alert info spinner">Cargando…</div>';
+    fetch(cfg.API_BASE + '/api/admins', { headers: authHeaders() })
+      .then(function (r) {
+        if (r.status === 401 || r.status === 403) { forceRelogin(); throw new Error('auth'); }
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (data) { renderAdmins(data.admins || []); })
+      .catch(function (err) {
+        if (err.message !== 'auth') adminsList.innerHTML = '<div class="alert error">No se pudo cargar la lista. (' + esc(err.message) + ')</div>';
+      });
+  }
+
+  function renderAdmins(list) {
+    if (!list.length) { adminsList.innerHTML = '<p class="muted small">No hay administradores.</p>'; return; }
+    adminsList.innerHTML = list.map(function (a) {
+      var name = a.full_name ? '<span class="nm">' + esc(a.full_name) + '</span>' : '';
+      var tag = a.is_self ? '<span class="tag">tú</span>'
+        : a.source === 'env' ? '<span class="tag">fijo</span>' : '';
+      var action = a.removable
+        ? '<button class="rm" data-email="' + esc(a.email) + '">Quitar</button>'
+        : '';
+      return '<div class="list-row">' +
+        '<div class="who"><span class="em">' + esc(a.email) + '</span>' + name + '</div>' +
+        '<span class="grow"></span>' + tag + action +
+      '</div>';
+    }).join('');
+  }
+
+  addAdminForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('new_admin_email').value.trim();
+    if (!email) return;
+    addAdminBtn.disabled = true;
+    alertHtml(addAdminResult, 'info', 'Autorizando…');
+    fetch(cfg.API_BASE + '/api/admins', {
+      method: 'POST',
+      headers: Object.assign({ 'Content-Type': 'application/json' }, authHeaders()),
+      body: JSON.stringify({ email: email })
+    })
+      .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, status: r.status, body: b }; }); })
+      .then(function (res) {
+        if (res.status === 401 || res.status === 403) { forceRelogin(addAdminResult); return; }
+        if (!res.ok) {
+          alertHtml(addAdminResult, 'error', (res.body && res.body.detail) ? esc(res.body.detail) : 'No se pudo autorizar.');
+          return;
+        }
+        alertHtml(addAdminResult, 'success', esc(res.body.email) + ' ahora puede entrar.');
+        addAdminForm.reset();
+        loadAdmins();
+      })
+      .catch(function (err) { alertHtml(addAdminResult, 'error', 'No se pudo contactar el servidor. (' + err.message + ')'); })
+      .finally(function () { addAdminBtn.disabled = false; });
+  });
+
+  adminsList.addEventListener('click', function (e) {
+    var btn = e.target.closest('.rm');
+    if (!btn) return;
+    var email = btn.getAttribute('data-email');
+    if (!confirm('¿Quitar a ' + email + ' como administrador?')) return;
+    btn.disabled = true;
+    fetch(cfg.API_BASE + '/api/admins/' + encodeURIComponent(email), { method: 'DELETE', headers: authHeaders() })
+      .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, status: r.status, body: b }; }); })
+      .then(function (res) {
+        if (res.status === 401 || res.status === 403) { forceRelogin(addAdminResult); return; }
+        if (!res.ok) { alertHtml(addAdminResult, 'error', (res.body && res.body.detail) ? esc(res.body.detail) : 'No se pudo quitar.'); btn.disabled = false; return; }
+        loadAdmins();
+      })
+      .catch(function (err) { alertHtml(addAdminResult, 'error', 'No se pudo contactar el servidor. (' + err.message + ')'); btn.disabled = false; });
   });
 })();

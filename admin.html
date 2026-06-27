@@ -102,6 +102,21 @@
         </form>
         <div id="result" aria-live="polite"></div>
       </div>
+
+      <!-- Manage admins -->
+      <div class="panel">
+        <h3 class="section-title">Administradores</h3>
+        <p class="section-sub">Personas autorizadas a entrar a este panel. Agrega o quita correos.</p>
+        <form id="add-admin-form" autocomplete="off">
+          <div class="field">
+            <label for="new_admin_email">Autorizar un nuevo correo</label>
+            <input type="email" id="new_admin_email" placeholder="persona@correo.com" required />
+          </div>
+          <button type="submit" class="btn" id="add-admin-btn">Autorizar correo</button>
+        </form>
+        <div id="add-admin-result" aria-live="polite"></div>
+        <div id="admins-list" style="margin-top:1.1rem"></div>
+      </div>
     </section>
   </main>
 
