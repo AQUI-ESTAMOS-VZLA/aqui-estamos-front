@@ -10,6 +10,11 @@
     },
     {
       "source": "/",
+      "has": [{ "type": "host", "value": "registro\\..*" }],
+      "destination": "/registro.html"
+    },
+    {
+      "source": "/",
       "has": [{ "type": "host", "value": "colaboradores\\..*" }],
       "destination": "/colaboradores.html"
     }

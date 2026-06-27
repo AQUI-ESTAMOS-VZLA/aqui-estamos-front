@@ -56,6 +56,7 @@
   function showPanel(email) {
     gate.hidden = true; panel.hidden = false; adminWho.textContent = email || '';
     loadAdmins();
+    loadRegUsers();
   }
   function showGate() {
     panel.hidden = true; gate.hidden = false;
@@ -290,5 +291,70 @@
         loadAdmins();
       })
       .catch(function (err) { alertHtml(addAdminResult, 'error', 'No se pudo contactar el servidor. (' + err.message + ')'); btn.disabled = false; });
+  });
+
+  // ---- Manage registry volunteers (registro console allowlist) ------------
+  var addRegForm = document.getElementById('add-reguser-form');
+  var addRegBtn = document.getElementById('add-reguser-btn');
+  var addRegResult = document.getElementById('add-reguser-result');
+  var regUserList = document.getElementById('reguser-list');
+
+  function loadRegUsers() {
+    regUserList.innerHTML = '<div class="alert info spinner">Cargando…</div>';
+    fetch(cfg.API_BASE + '/api/registro-users', { headers: authHeaders() })
+      .then(function (r) {
+        if (r.status === 401 || r.status === 403) { forceRelogin(); throw new Error('auth'); }
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        var list = data.users || [];
+        if (!list.length) { regUserList.innerHTML = '<p class="muted small">Aún no hay voluntarios de registro. (Los administradores también tienen acceso.)</p>'; return; }
+        regUserList.innerHTML = list.map(function (u) {
+          var name = u.full_name ? '<span class="nm">' + esc(u.full_name) + '</span>' : '';
+          return '<div class="list-row"><div class="who"><span class="em">' + esc(u.email) + '</span>' + name + '</div>' +
+            '<span class="grow"></span><button class="rm" data-email="' + esc(u.email) + '">Quitar</button></div>';
+        }).join('');
+      })
+      .catch(function (err) { if (err.message !== 'auth') regUserList.innerHTML = '<div class="alert error">No se pudo cargar. (' + esc(err.message) + ')</div>'; });
+  }
+
+  addRegForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('new_reguser_email').value.trim();
+    if (!email) return;
+    addRegBtn.disabled = true;
+    alertHtml(addRegResult, 'info', 'Autorizando…');
+    fetch(cfg.API_BASE + '/api/registro-users', {
+      method: 'POST',
+      headers: Object.assign({ 'Content-Type': 'application/json' }, authHeaders()),
+      body: JSON.stringify({ email: email })
+    })
+      .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, status: r.status, body: b }; }); })
+      .then(function (res) {
+        if (res.status === 401 || res.status === 403) { forceRelogin(addRegResult); return; }
+        if (!res.ok) { alertHtml(addRegResult, 'error', (res.body && res.body.detail) ? esc(res.body.detail) : 'No se pudo autorizar.'); return; }
+        alertHtml(addRegResult, 'success', esc(res.body.email) + ' ahora puede usar la consola de registros.');
+        addRegForm.reset();
+        loadRegUsers();
+      })
+      .catch(function (err) { alertHtml(addRegResult, 'error', 'No se pudo contactar el servidor. (' + err.message + ')'); })
+      .finally(function () { addRegBtn.disabled = false; });
+  });
+
+  regUserList.addEventListener('click', function (e) {
+    var btn = e.target.closest('.rm');
+    if (!btn) return;
+    var email = btn.getAttribute('data-email');
+    if (!confirm('¿Quitar a ' + email + ' de voluntarios de registro?')) return;
+    btn.disabled = true;
+    fetch(cfg.API_BASE + '/api/registro-users/' + encodeURIComponent(email), { method: 'DELETE', headers: authHeaders() })
+      .then(function (r) {
+        if (r.status === 401 || r.status === 403) { forceRelogin(addRegResult); throw new Error('auth'); }
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function () { loadRegUsers(); })
+      .catch(function (err) { if (err.message !== 'auth') { alertHtml(addRegResult, 'error', 'No se pudo quitar. (' + esc(err.message) + ')'); btn.disabled = false; } });
   });
 })();

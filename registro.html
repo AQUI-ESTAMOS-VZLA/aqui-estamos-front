@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Consola de Registros — Aqui Estamos Venezuela</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="description" content="Consola interna para voluntarios de registro." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?display=swap&family=Roboto:ital,wght@0,400;0,500;0,700;0,900" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <img class="hero-img" src="assets/images/image01.jpg" alt="Aqui Estamos Venezuela" />
+    <h1>Consola de Registros</h1>
+
+    <!-- Access gate -->
+    <section id="gate">
+      <h2>Acceso para voluntarios de registro</h2>
+      <div class="panel">
+        <form id="login-email" autocomplete="off" hidden>
+          <div class="field">
+            <label for="reg_email">Correo electrónico</label>
+            <input type="email" id="reg_email" placeholder="tu@correo.com" required />
+          </div>
+          <button type="submit" class="btn btn-primary" id="login-email-btn">Enviar enlace de acceso</button>
+          <p class="muted small" style="margin:.85rem 0 0">Te enviaremos un enlace de un solo uso. Solo correos autorizados pueden entrar.</p>
+        </form>
+        <form id="login-token" autocomplete="off" hidden>
+          <div class="field">
+            <label for="reg_token">Clave de acceso</label>
+            <input type="password" id="reg_token" placeholder="••••••••" required />
+          </div>
+          <button type="submit" class="btn btn-primary" id="login-token-btn">Entrar</button>
+        </form>
+        <div id="login-result" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- Console -->
+    <section id="panel" hidden>
+      <div class="topbar">
+        <span class="badge ok">Voluntario de registro</span>
+        <span id="who" class="muted small"></span>
+        <a href="#" id="logout" style="margin-left:auto">Salir</a>
+      </div>
+
+      <!-- Add registro -->
+      <div class="panel">
+        <h3 class="section-title">Añadir un registro</h3>
+        <p class="section-sub">Solo el nombre y el apellido son obligatorios. Lo demás ayuda a localizar y verificar.</p>
+        <form id="reg-form" autocomplete="off">
+          <div class="grid2">
+            <div class="field"><label for="first_name">Nombre *</label><input type="text" id="first_name" required /></div>
+            <div class="field"><label for="last_name">Apellido *</label><input type="text" id="last_name" required /></div>
+          </div>
+          <div class="grid2">
+            <div class="field"><label for="approximate_age">Edad aproximada</label><input type="text" id="approximate_age" inputmode="numeric" placeholder="Opcional" /></div>
+            <div class="field"><label for="city">Ciudad / Municipio</label><input type="text" id="city" placeholder="Ej. Caracas" /></div>
+          </div>
+          <div class="grid2">
+            <div class="field">
+              <label for="status">Estado</label>
+              <select id="status">
+                <option value="buscada">Buscada por familiares</option>
+                <option value="localizada">Localizada</option>
+                <option value="en_refugio">En refugio</option>
+                <option value="hospitalizada">Hospitalizada</option>
+                <option value="fallecida">Fallecida</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="photo">Fotografía principal</label>
+              <div class="file-row">
+                <input type="file" id="photo" accept="image/*" />
+                <img id="photo-preview" class="photo-preview" alt="Vista previa" />
+              </div>
+            </div>
+          </div>
+
+          <details class="private-box">
+            <summary>Información privada (no se muestra en la búsqueda pública)</summary>
+            <div class="field"><label for="exact_address">Dirección exacta</label><input type="text" id="exact_address" /></div>
+            <div class="grid2">
+              <div class="field"><label for="facility">Hospital / refugio específico</label><input type="text" id="facility" /></div>
+              <div class="field"><label for="gps">Coordenadas GPS</label><input type="text" id="gps" placeholder="lat, lon" /></div>
+            </div>
+            <div class="grid2">
+              <div class="field"><label for="phones">Teléfonos</label><input type="text" id="phones" /></div>
+              <div class="field"><label for="emails">Correos</label><input type="text" id="emails" /></div>
+            </div>
+            <div class="field"><label for="id_document">Documento de identidad</label><input type="text" id="id_document" /></div>
+            <div class="field"><label for="family_data">Datos de familiares</label><input type="text" id="family_data" /></div>
+            <div class="field"><label for="medical_info">Información médica</label><input type="text" id="medical_info" /></div>
+            <div class="field"><label for="video_url">Enlace al video original</label><input type="text" id="video_url" placeholder="URL en el Drive" /></div>
+            <div class="field"><label for="internal_notes">Observaciones internas</label><input type="text" id="internal_notes" /></div>
+          </details>
+
+          <button type="submit" class="btn btn-primary" id="reg-submit" style="margin-top:1rem">Guardar registro</button>
+        </form>
+        <div id="reg-result" aria-live="polite"></div>
+      </div>
+
+      <!-- Browse / verify / delete -->
+      <div class="panel">
+        <h3 class="section-title">Registros</h3>
+        <p class="section-sub">Busca para verificar la información o eliminar registros que no sean necesarios.</p>
+        <div class="field" style="margin-bottom:.6rem">
+          <input type="text" id="filter" placeholder="Filtrar por nombre, ciudad o N.º…" />
+        </div>
+        <div id="list" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/registro.js"></script>
+</body>
+</html>

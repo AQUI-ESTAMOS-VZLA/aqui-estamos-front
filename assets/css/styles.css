@@ -175,6 +175,21 @@ form { margin: 1.25rem 0; }
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+/* Two-column form grid (collapses on mobile) */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 .9rem; }
+@media (max-width: 480px) { .grid2 { grid-template-columns: 1fr; } }
+
+/* Collapsible private section */
+.private-box {
+  border: 1px solid var(--border); border-radius: 12px; padding: .35rem .9rem;
+  background: #fafafa; margin-top: .4rem;
+}
+.private-box > summary {
+  cursor: pointer; font-weight: 600; padding: .6rem .1rem; list-style: none; color: var(--ink);
+}
+.private-box > summary::before { content: "🔒 "; }
+.private-box[open] > summary { border-bottom: 1px solid var(--border); margin-bottom: .6rem; }
+
 /* Status pills (registros) */
 .status-pill {
   display: inline-block; padding: .22rem .7rem; border-radius: 999px;
