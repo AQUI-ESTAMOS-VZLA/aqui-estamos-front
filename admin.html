@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Panel de Administración — Aqui Estamos Venezuela</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="description" content="Panel interno de administración de voluntarios — Aqui Estamos Venezuela." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?display=swap&family=Roboto:ital,wght@0,400;0,500;0,700;0,900" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <img class="hero-img" src="assets/images/image01.jpg" alt="Aqui Estamos Venezuela" />
+    <h1>Panel de Administración</h1>
+
+    <!-- Access gate (shown until a valid admin logs in) -->
+    <section id="gate">
+      <h2>Acceso restringido</h2>
+      <p class="muted small">Solo personas autorizadas pueden registrar y consultar voluntarios.</p>
+      <form id="login-form" autocomplete="off">
+        <div class="field">
+          <label for="admin_token">Clave de acceso</label>
+          <input type="password" id="admin_token" name="admin_token" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn btn-primary" id="login-btn">Entrar</button>
+      </form>
+      <div id="login-result" aria-live="polite"></div>
+    </section>
+
+    <!-- Console (revealed after login) -->
+    <section id="panel" hidden>
+      <div class="topbar">
+        <span class="badge ok">Sesión de administrador</span>
+        <a href="#" id="logout">Salir</a>
+      </div>
+
+      <!-- Lookup / verify -->
+      <h3>Buscar voluntario</h3>
+      <p class="muted small">Consulta la ficha de un voluntario por su cédula.</p>
+      <form id="verify-form" autocomplete="off">
+        <div class="field">
+          <label for="v_cedula">Cédula</label>
+          <input type="text" id="v_cedula" name="cedula" inputmode="numeric" placeholder="Ej. 12345678" required />
+        </div>
+        <button type="submit" class="btn" id="verify-btn">Buscar</button>
+      </form>
+      <div id="verify-result" aria-live="polite"></div>
+
+      <hr class="divider" />
+
+      <!-- Register -->
+      <h3>Registrar voluntario</h3>
+      <p class="muted small">Da de alta a un voluntario con su foto. Quedará disponible para verificación pública por cédula.</p>
+      <form id="register-form" autocomplete="off">
+        <div class="field">
+          <label for="first_name">Nombre</label>
+          <input type="text" id="first_name" name="first_name" placeholder="Ej. María" required />
+        </div>
+        <div class="field">
+          <label for="last_name">Apellido</label>
+          <input type="text" id="last_name" name="last_name" placeholder="Ej. González" required />
+        </div>
+        <div class="field">
+          <label for="cedula">Cédula</label>
+          <input type="text" id="cedula" name="cedula" inputmode="numeric" placeholder="Ej. 12345678" required />
+        </div>
+        <div class="field">
+          <label for="role">Rol (opcional)</label>
+          <select id="role" name="role">
+            <option value="Registro audiovisual">Registro audiovisual</option>
+            <option value="Registro escrito">Registro escrito</option>
+            <option value="Verificación">Verificación</option>
+            <option value="Coordinación">Coordinación</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="photo">Foto del voluntario</label>
+          <input type="file" id="photo" name="photo" accept="image/*" required />
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit-btn">Registrar voluntario</button>
+      </form>
+      <div id="result" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>
