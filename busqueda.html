@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Buscar a una persona — Aqui Estamos Venezuela</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="description" content="Busca un registro de una persona por nombre, apellido o número de registro." />
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?display=swap&family=Roboto:ital,wght@0,400;0,500;0,700;0,900" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <div class="topbar"><a href="/">&larr; Inicio</a></div>
+    <h1>Buscar a una persona</h1>
+    <h2>Escribe un nombre, apellido o número de registro. La búsqueda tolera errores de escritura y acentos.</h2>
+
+    <div class="panel">
+      <form id="search-form" autocomplete="off">
+        <div class="field" style="margin-bottom:0">
+          <label for="q">Nombre, apellido o N.º de registro</label>
+          <input type="text" id="q" name="q" placeholder="Ej. María González, o AE-00001" autofocus />
+        </div>
+      </form>
+    </div>
+
+    <div id="results" aria-live="polite"></div>
+
+    <p class="muted small center" style="margin-top:1.5rem">
+      El sistema solo confirma que un registro existe y muestra información pública.
+      <a href="/privacidad">Ver Política de Búsqueda y Privacidad</a>.
+    </p>
+  </main>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/busqueda.js"></script>
+</body>
+</html>

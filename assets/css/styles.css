@@ -175,6 +175,16 @@ form { margin: 1.25rem 0; }
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+/* Status pills (registros) */
+.status-pill {
+  display: inline-block; padding: .22rem .7rem; border-radius: 999px;
+  font-size: .8rem; font-weight: 700; border: 1px solid transparent;
+}
+.status-pill.s-ok   { background: var(--ok-bg);  color: var(--ok-fg);  border-color: var(--ok-bd); }
+.status-pill.s-info { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+.status-pill.s-warn { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+.status-pill.s-muted{ background: #f4f4f5; color: #52525b; border-color: #e4e4e7; }
+
 /* Admin list rows */
 .list-row {
   display: flex; align-items: center; gap: .6rem;
