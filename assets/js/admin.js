@@ -167,6 +167,17 @@
       .finally(function () { verifyBtn.disabled = false; });
   });
 
+  // Photo preview before upload
+  var photoInput = document.getElementById('photo');
+  var photoPreview = document.getElementById('photo-preview');
+  if (photoInput && photoPreview) {
+    photoInput.addEventListener('change', function () {
+      var f = photoInput.files[0];
+      if (f) { photoPreview.src = URL.createObjectURL(f); photoPreview.classList.add('show'); }
+      else { photoPreview.classList.remove('show'); }
+    });
+  }
+
   // ---- Register (admin only) ---------------------------------------------
   registerForm.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -194,6 +205,7 @@
         alertHtml(resultEl, 'success', 'Voluntario <strong>' + esc(v.first_name) + ' ' +
           esc(v.last_name) + '</strong> (cédula ' + esc(v.cedula) + ') registrado correctamente.');
         registerForm.reset();
+        if (photoPreview) photoPreview.classList.remove('show');
       })
       .catch(function (err) { alertHtml(resultEl, 'error', 'No se pudo contactar el servidor. (' + err.message + ')'); })
       .finally(function () { submitBtn.disabled = false; });

@@ -19,26 +19,27 @@
     <h1>Verificar Voluntario</h1>
     <h2>Confirma que una persona pertenece a la red de voluntarios buscándola por su cédula.</h2>
 
-    <form id="verify-form" autocomplete="off">
-      <div class="field">
-        <label for="first_name">Nombre</label>
-        <input type="text" id="first_name" name="first_name" placeholder="Ej. María" required />
-      </div>
-      <div class="field">
-        <label for="last_name">Apellido</label>
-        <input type="text" id="last_name" name="last_name" placeholder="Ej. González" required />
-      </div>
-      <div class="field">
-        <label for="cedula">Cédula</label>
-        <input type="text" id="cedula" name="cedula" inputmode="numeric" placeholder="Ej. 12345678" required />
-      </div>
-      <button type="submit" class="btn btn-primary" id="submit-btn">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l9 4v6c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4zm-1.2 13.4l5.3-5.3-1.4-1.4-3.9 3.9-1.9-1.9-1.4 1.4 3.3 3.3z"/></svg>
-        Verificar
-      </button>
-    </form>
-
-    <div id="result" aria-live="polite"></div>
+    <div class="panel">
+      <form id="verify-form" autocomplete="off">
+        <div class="field">
+          <label for="first_name">Nombre</label>
+          <input type="text" id="first_name" name="first_name" placeholder="Ej. María" required />
+        </div>
+        <div class="field">
+          <label for="last_name">Apellido</label>
+          <input type="text" id="last_name" name="last_name" placeholder="Ej. González" required />
+        </div>
+        <div class="field">
+          <label for="cedula">Cédula</label>
+          <input type="text" id="cedula" name="cedula" inputmode="numeric" placeholder="Ej. 12345678" required />
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit-btn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l9 4v6c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4zm-1.2 13.4l5.3-5.3-1.4-1.4-3.9 3.9-1.9-1.9-1.4 1.4 3.3 3.3z"/></svg>
+          Verificar
+        </button>
+      </form>
+      <div id="result" aria-live="polite"></div>
+    </div>
   </main>
 
   <script src="assets/js/config.js"></script>

@@ -19,84 +19,89 @@
     <!-- Access gate (shown until a valid admin logs in) -->
     <section id="gate">
       <h2>Acceso restringido</h2>
-      <p class="muted small">Solo personas autorizadas pueden registrar y consultar voluntarios.</p>
+      <div class="panel">
+        <!-- Supabase magic-link login (per-person) -->
+        <form id="login-email" autocomplete="off" hidden>
+          <div class="field">
+            <label for="admin_email">Correo electrónico</label>
+            <input type="email" id="admin_email" name="admin_email" placeholder="tu@correo.com" required />
+          </div>
+          <button type="submit" class="btn btn-primary" id="login-email-btn">Enviar enlace de acceso</button>
+          <p class="muted small" style="margin:.85rem 0 0">Te enviaremos un enlace de un solo uso a tu correo. Solo correos autorizados pueden entrar.</p>
+        </form>
 
-      <!-- Supabase magic-link login (per-person) -->
-      <form id="login-email" autocomplete="off" hidden>
-        <div class="field">
-          <label for="admin_email">Correo electrónico</label>
-          <input type="email" id="admin_email" name="admin_email" placeholder="tu@correo.com" required />
-        </div>
-        <button type="submit" class="btn btn-primary" id="login-email-btn">Enviar enlace de acceso</button>
-        <p class="muted small" style="margin-top:.75rem">Te enviaremos un enlace de un solo uso a tu correo para entrar.</p>
-      </form>
+        <!-- Shared-token fallback (when Supabase is not configured) -->
+        <form id="login-token" autocomplete="off" hidden>
+          <div class="field">
+            <label for="admin_token">Clave de acceso</label>
+            <input type="password" id="admin_token" name="admin_token" placeholder="••••••••" required />
+          </div>
+          <button type="submit" class="btn btn-primary" id="login-token-btn">Entrar</button>
+        </form>
 
-      <!-- Shared-token fallback (when Supabase is not configured) -->
-      <form id="login-token" autocomplete="off" hidden>
-        <div class="field">
-          <label for="admin_token">Clave de acceso</label>
-          <input type="password" id="admin_token" name="admin_token" placeholder="••••••••" required />
-        </div>
-        <button type="submit" class="btn btn-primary" id="login-token-btn">Entrar</button>
-      </form>
-
-      <div id="login-result" aria-live="polite"></div>
+        <div id="login-result" aria-live="polite"></div>
+      </div>
     </section>
 
     <!-- Console (revealed after login) -->
     <section id="panel" hidden>
       <div class="topbar">
-        <span class="badge ok">Sesión de administrador</span>
+        <span class="badge ok">Administrador</span>
         <span id="admin-who" class="muted small"></span>
         <a href="#" id="logout" style="margin-left:auto">Salir</a>
       </div>
 
       <!-- Lookup / verify -->
-      <h3>Buscar voluntario</h3>
-      <p class="muted small">Consulta la ficha de un voluntario por su cédula.</p>
-      <form id="verify-form" autocomplete="off">
-        <div class="field">
-          <label for="v_cedula">Cédula</label>
-          <input type="text" id="v_cedula" name="cedula" inputmode="numeric" placeholder="Ej. 12345678" required />
-        </div>
-        <button type="submit" class="btn" id="verify-btn">Buscar</button>
-      </form>
-      <div id="verify-result" aria-live="polite"></div>
-
-      <hr class="divider" />
+      <div class="panel">
+        <h3 class="section-title">Buscar voluntario</h3>
+        <p class="section-sub">Consulta la ficha de un voluntario por su cédula.</p>
+        <form id="verify-form" autocomplete="off">
+          <div class="field">
+            <label for="v_cedula">Cédula</label>
+            <input type="text" id="v_cedula" name="cedula" inputmode="numeric" placeholder="Ej. 12345678" required />
+          </div>
+          <button type="submit" class="btn" id="verify-btn">Buscar</button>
+        </form>
+        <div id="verify-result" aria-live="polite"></div>
+      </div>
 
       <!-- Register -->
-      <h3>Registrar voluntario</h3>
-      <p class="muted small">Da de alta a un voluntario con su foto. Quedará disponible para verificación pública por cédula.</p>
-      <form id="register-form" autocomplete="off">
-        <div class="field">
-          <label for="first_name">Nombre</label>
-          <input type="text" id="first_name" name="first_name" placeholder="Ej. María" required />
-        </div>
-        <div class="field">
-          <label for="last_name">Apellido</label>
-          <input type="text" id="last_name" name="last_name" placeholder="Ej. González" required />
-        </div>
-        <div class="field">
-          <label for="cedula">Cédula</label>
-          <input type="text" id="cedula" name="cedula" inputmode="numeric" placeholder="Ej. 12345678" required />
-        </div>
-        <div class="field">
-          <label for="role">Rol (opcional)</label>
-          <select id="role" name="role">
-            <option value="Registro audiovisual">Registro audiovisual</option>
-            <option value="Registro escrito">Registro escrito</option>
-            <option value="Verificación">Verificación</option>
-            <option value="Coordinación">Coordinación</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="photo">Foto del voluntario</label>
-          <input type="file" id="photo" name="photo" accept="image/*" required />
-        </div>
-        <button type="submit" class="btn btn-primary" id="submit-btn">Registrar voluntario</button>
-      </form>
-      <div id="result" aria-live="polite"></div>
+      <div class="panel">
+        <h3 class="section-title">Registrar voluntario</h3>
+        <p class="section-sub">Da de alta a un voluntario con su foto. Quedará disponible para verificación pública por cédula.</p>
+        <form id="register-form" autocomplete="off">
+          <div class="field">
+            <label for="first_name">Nombre</label>
+            <input type="text" id="first_name" name="first_name" placeholder="Ej. María" required />
+          </div>
+          <div class="field">
+            <label for="last_name">Apellido</label>
+            <input type="text" id="last_name" name="last_name" placeholder="Ej. González" required />
+          </div>
+          <div class="field">
+            <label for="cedula">Cédula</label>
+            <input type="text" id="cedula" name="cedula" inputmode="numeric" placeholder="Ej. 12345678" required />
+          </div>
+          <div class="field">
+            <label for="role">Rol (opcional)</label>
+            <select id="role" name="role">
+              <option value="Registro audiovisual">Registro audiovisual</option>
+              <option value="Registro escrito">Registro escrito</option>
+              <option value="Verificación">Verificación</option>
+              <option value="Coordinación">Coordinación</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="photo">Foto del voluntario</label>
+            <div class="file-row">
+              <input type="file" id="photo" name="photo" accept="image/*" required />
+              <img id="photo-preview" class="photo-preview" alt="Vista previa" />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" id="submit-btn">Registrar voluntario</button>
+        </form>
+        <div id="result" aria-live="polite"></div>
+      </div>
     </section>
   </main>
 
