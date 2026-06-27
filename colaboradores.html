@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Registro de Colaboradores — Aqui Estamos Venezuela</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="description" content="Registro interno de voluntarios y colaboradores de Aqui Estamos Venezuela." />
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?display=swap&family=Roboto:ital,wght@0,400;0,500;0,700;0,900" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <img class="hero-img" src="assets/images/image01.jpg" alt="Aqui Estamos Venezuela" />
+    <h1>Registro de Colaboradores</h1>
+    <h2>Da de alta a un voluntario: sus datos y su foto quedan disponibles para verificación pública por cédula.</h2>
+
+    <form id="register-form" autocomplete="off">
+      <div class="field">
+        <label for="first_name">Nombre</label>
+        <input type="text" id="first_name" name="first_name" placeholder="Ej. María" required />
+      </div>
+      <div class="field">
+        <label for="last_name">Apellido</label>
+        <input type="text" id="last_name" name="last_name" placeholder="Ej. González" required />
+      </div>
+      <div class="field">
+        <label for="cedula">Cédula</label>
+        <input type="text" id="cedula" name="cedula" inputmode="numeric" placeholder="Ej. 12345678" required />
+      </div>
+      <div class="field">
+        <label for="role">Rol (opcional)</label>
+        <select id="role" name="role">
+          <option value="Registro audiovisual">Registro audiovisual</option>
+          <option value="Registro escrito">Registro escrito</option>
+          <option value="Verificación">Verificación</option>
+          <option value="Coordinación">Coordinación</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="photo">Foto del voluntario</label>
+        <input type="file" id="photo" name="photo" accept="image/*" required />
+      </div>
+      <button type="submit" class="btn btn-primary" id="submit-btn">Registrar voluntario</button>
+    </form>
+
+    <div id="result" aria-live="polite"></div>
+
+    <footer>
+      <a href="verificar.html">Ir a verificación pública &rarr;</a>
+    </footer>
+  </main>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/colaboradores.js"></script>
+</body>
+</html>

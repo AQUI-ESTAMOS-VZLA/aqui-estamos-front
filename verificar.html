@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Verificar Voluntario — Aqui Estamos Venezuela</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="description" content="Verifica la identidad de un voluntario de Aqui Estamos Venezuela por su cédula." />
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?display=swap&family=Roboto:ital,wght@0,400;0,500;0,700;0,900" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <div class="topbar">
+      <a href="index.html">&larr; Inicio</a>
+    </div>
+
+    <h1>Verificar Voluntario</h1>
+    <h2>Confirma que una persona pertenece a la red de voluntarios buscándola por su cédula.</h2>
+
+    <form id="verify-form" autocomplete="off">
+      <div class="field">
+        <label for="first_name">Nombre</label>
+        <input type="text" id="first_name" name="first_name" placeholder="Ej. María" required />
+      </div>
+      <div class="field">
+        <label for="last_name">Apellido</label>
+        <input type="text" id="last_name" name="last_name" placeholder="Ej. González" required />
+      </div>
+      <div class="field">
+        <label for="cedula">Cédula</label>
+        <input type="text" id="cedula" name="cedula" inputmode="numeric" placeholder="Ej. 12345678" required />
+      </div>
+      <button type="submit" class="btn btn-primary" id="submit-btn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l9 4v6c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4zm-1.2 13.4l5.3-5.3-1.4-1.4-3.9 3.9-1.9-1.9-1.4 1.4 3.3 3.3z"/></svg>
+        Verificar
+      </button>
+    </form>
+
+    <div id="result" aria-live="polite"></div>
+  </main>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/verificar.js"></script>
+</body>
+</html>
