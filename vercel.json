@@ -1,22 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    {
-      "source": "/",
-      "has": [{ "type": "host", "value": "admin\\..*" }],
-      "destination": "/admin.html"
-    },
-    {
-      "source": "/",
-      "has": [{ "type": "host", "value": "registro\\..*" }],
-      "destination": "/registro.html"
-    },
-    {
-      "source": "/",
-      "has": [{ "type": "host", "value": "colaboradores\\..*" }],
-      "destination": "/colaboradores.html"
-    }
-  ]
+  "framework": "nextjs"
 }

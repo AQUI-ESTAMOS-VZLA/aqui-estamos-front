@@ -251,3 +251,11 @@ footer a { color: #0a0a0a; font-weight: 600; }
   .card { flex-direction: column; align-items: center; text-align: center; }
   .card .info { width: 100%; }
 }
+
+/* Privacy page: public/private summary table + lead rule */
+.pubpriv { width:100%; border-collapse:collapse; font-size:.95rem; }
+.pubpriv th, .pubpriv td { padding:.55rem .6rem; border-bottom:1px solid var(--border); text-align:left; }
+.pubpriv th { font-weight:700; }
+.pubpriv td.c, .pubpriv th.c { text-align:center; width:84px; }
+.pubpriv .yes { color:var(--ok-fg); font-weight:800; }
+.lead-rule { border-left:4px solid var(--ve-blue); padding:.85rem 1rem; background:var(--info-bg); border-radius:0 10px 10px 0; }
