@@ -4,12 +4,9 @@ import { useEffect, useState } from 'react';
 import { getConfig } from '@/lib/config';
 
 export default function Home() {
-  const [ayudar, setAyudar] = useState('#');
   const [instagram, setInstagram] = useState('#');
   useEffect(() => {
-    const c = getConfig();
-    setAyudar(c.ayudarFormUrl);
-    setInstagram(c.instagramUrl);
+    setInstagram(getConfig().instagramUrl);
   }, []);
 
   return (
@@ -39,12 +36,12 @@ export default function Home() {
           </Link>
         </li>
         <li>
-          <a className="btn" href={ayudar} role="button">
+          <Link className="btn" href="/voluntario" role="button">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M4 11h12.17l-5.59-5.59L12 4l8 8-8 8-1.41-1.41L16.17 13H4z" />
             </svg>
             Quiero ser voluntario
-          </a>
+          </Link>
         </li>
         <li>
           <Link className="btn" href="/verificar" role="button">
@@ -108,12 +105,30 @@ export default function Home() {
         En estos casos, una imagen puede ser la única forma de decir: <strong>&quot;Aquí estoy&quot;</strong>.
       </p>
 
+      <hr className="divider" />
+
+      <h3>Política Temporal de Protección de Niños, Niñas y Adolescentes</h3>
+      <p>
+        Mientras desarrollamos nuestros protocolos especializados y formalizamos alianzas con
+        instituciones competentes, <strong>Aquí Estamos no realiza registros audiovisuales de
+        personas menores de edad</strong> (fotografías, videos, entrevistas o cualquier medio que
+        permita identificarlas). Durante esta fase, todas nuestras herramientas se orientan al apoyo
+        humanitario y logístico a las víctimas del terremoto del 24 de junio de 2026.
+      </p>
+      <p>
+        <Link className="btn" href="/proteccion-menores" role="button">
+          Leer la política completa
+        </Link>
+      </p>
+
       <footer>
         <a href={instagram} target="_blank" rel="noopener noreferrer">
           Instagram
         </a>
         &nbsp;·&nbsp;
         <Link href="/privacidad">Política de Búsqueda y Privacidad</Link>
+        &nbsp;·&nbsp;
+        <Link href="/proteccion-menores">Protección de Niños, Niñas y Adolescentes</Link>
       </footer>
     </main>
   );

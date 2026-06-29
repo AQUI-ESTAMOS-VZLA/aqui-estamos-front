@@ -23,6 +23,12 @@ export default function Registro() {
           </Link>
         </div>
       </div>
+
+      <div className="alert info" role="note">
+        <strong>Protección de la infancia.</strong> Durante esta fase, Aquí Estamos no realiza
+        registros audiovisuales de personas menores de edad.{' '}
+        <Link href="/proteccion-menores">Leer la política</Link>.
+      </div>
     </main>
   );
 }
