@@ -11,6 +11,11 @@ export default function Home() {
 
   return (
     <main className="wrap">
+      <div className="lang-switch">
+        <Link href="/en" hrefLang="en">
+          English
+        </Link>
+      </div>
       <img
         className="hero-img"
         src="/assets/images/image01.jpg"
