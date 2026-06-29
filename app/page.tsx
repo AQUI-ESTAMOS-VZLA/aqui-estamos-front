@@ -164,7 +164,7 @@ export default function Home() {
       <p>
         Como medida institucional vigente, Aquí Estamos{" "}
         <strong>
-          no realiza registros audiovisuales de niños, niñas y adolescentes
+          no realiza registros audiovisuales de niños, niñas y adolescentes{" "}
         </strong>
         ni incorpora información que permita su identificación directa o
         indirecta, hasta contar con protocolos especializados, asesoría jurídica
