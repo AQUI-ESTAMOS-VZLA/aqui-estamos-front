@@ -183,12 +183,12 @@ export default function HomeEn() {
         responsible development of humanitarian technology.
       </p>
       <p>
-        <Link className="btn" href="/proteccion-menores" role="button">
+        <Link className="btn" href="/en/child-protection" role="button">
           Read the full policy
         </Link>
       </p>
       <p>
-        <Link className="btn" href="/constitucion-tecnologica" role="button">
+        <Link className="btn" href="/en/technological-constitution" role="button">
           Read the Technological Constitution
         </Link>
       </p>
@@ -208,11 +208,11 @@ export default function HomeEn() {
           Instagram
         </a>
         &nbsp;·&nbsp;
-        <Link href="/privacidad">Search and Privacy Policy</Link>
+        <Link href="/en/privacy">Search and Privacy Policy</Link>
         &nbsp;·&nbsp;
-        <Link href="/proteccion-menores">Child and Adolescent Protection</Link>
+        <Link href="/en/child-protection">Child and Adolescent Protection</Link>
         &nbsp;·&nbsp;
-        <Link href="/constitucion-tecnologica">Technological Constitution</Link>
+        <Link href="/en/technological-constitution">Technological Constitution</Link>
       </footer>
     </main>
   );
