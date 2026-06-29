@@ -4,6 +4,7 @@ import { PolicyConsent } from '@/components/PolicyConsent';
 export default function SubirRegistro() {
   return (
     <PolicyConsent
+      switchHref="/en/add-record"
       title="Añadir un registro"
       subtitle="Antes de subir un registro, lee y acepta nuestra política de protección de la infancia."
       formKey="registroFormUrl"

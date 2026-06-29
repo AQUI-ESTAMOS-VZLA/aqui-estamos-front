@@ -32,7 +32,7 @@ export default function HomeEn() {
 
       <ul className="buttons">
         <li>
-          <Link className="btn btn-primary" href="/busqueda" role="button">
+          <Link className="btn btn-primary" href="/en/search" role="button">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.49 4.49 0 0 1 9.5 14z" />
             </svg>
@@ -40,7 +40,7 @@ export default function HomeEn() {
           </Link>
         </li>
         <li>
-          <Link className="btn" href="/subir-registro" role="button">
+          <Link className="btn" href="/en/add-record" role="button">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M9 3l-1.83 2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3.17L15 3H9zm3 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
             </svg>
@@ -48,7 +48,7 @@ export default function HomeEn() {
           </Link>
         </li>
         <li>
-          <Link className="btn" href="/voluntario" role="button">
+          <Link className="btn" href="/en/volunteer" role="button">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M4 11h12.17l-5.59-5.59L12 4l8 8-8 8-1.41-1.41L16.17 13H4z" />
             </svg>
@@ -56,7 +56,7 @@ export default function HomeEn() {
           </Link>
         </li>
         <li>
-          <Link className="btn" href="/verificar" role="button">
+          <Link className="btn" href="/en/verify" role="button">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 1l9 4v6c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4zm-1.2 13.4l5.3-5.3-1.4-1.4-3.9 3.9-1.9-1.9-1.4 1.4 3.3 3.3z" />
             </svg>

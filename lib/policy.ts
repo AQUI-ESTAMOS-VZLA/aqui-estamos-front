@@ -12,3 +12,13 @@ export const CHILD_POLICY = {
   acceptanceText:
     'Confirmo que conozco y cumpliré la Política de Protección de Niños, Niñas y Adolescentes de Aquí Estamos. Entiendo que no estoy autorizado para realizar registros audiovisuales de menores de edad hasta nuevo aviso oficial de la organización.',
 };
+
+// English equivalent, used by the /en pages.
+export const CHILD_POLICY_EN = {
+  path: '/en/child-protection',
+  title: 'Child and Adolescent Protection Policy',
+  notice:
+    'You are not authorized to photograph, film, interview or make audiovisual records of minors on behalf of Aquí Estamos.',
+  acceptanceText:
+    'I confirm that I know and will comply with the Aquí Estamos Child and Adolescent Protection Policy. I understand that I am not authorized to make audiovisual records of minors until further official notice from the organization.',
+};

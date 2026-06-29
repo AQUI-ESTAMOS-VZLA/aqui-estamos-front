@@ -14,7 +14,7 @@ function VolunteerCard({ v }: { v: Volunteer }) {
   return (
     <div className="card">
       {v.photo_url ? (
-        <img className="photo" src={v.photo_url} alt={`Foto de ${v.first_name}`} />
+        <img className="photo" src={v.photo_url} alt={`Photo of ${v.first_name}`} />
       ) : (
         <div className="photo"></div>
       )}
@@ -23,18 +23,18 @@ function VolunteerCard({ v }: { v: Volunteer }) {
           {v.first_name} {v.last_name}
         </h3>
         <div style={{ marginBottom: '.6rem' }}>
-          <span className="badge ok">Voluntario verificado</span>
+          <span className="badge ok">Verified volunteer</span>
         </div>
-        <Row k="Cédula" v={v.cedula} />
-        <Row k="Rol" v={v.role} />
-        <Row k="Estado" v={v.status} />
-        <Row k="Registrado" v={v.created_at ? v.created_at.substring(0, 10) : ''} />
+        <Row k="ID number" v={v.cedula} />
+        <Row k="Role" v={v.role} />
+        <Row k="Status" v={v.status} />
+        <Row k="Registered" v={v.created_at ? v.created_at.substring(0, 10) : ''} />
       </div>
     </div>
   );
 }
 
-export default function Verificar() {
+export default function VerifyEn() {
   const [query, setQuery] = useState('');
   const [result, setResult] = useState<Result | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -43,7 +43,7 @@ export default function Verificar() {
     e.preventDefault();
     const value = query.trim();
     if (!value) {
-      setResult({ kind: 'error', message: 'Ingresa una cédula, nombre o apellido.' });
+      setResult({ kind: 'error', message: 'Enter an ID number, first name or last name.' });
       return;
     }
 
@@ -60,7 +60,7 @@ export default function Verificar() {
       if (volunteers.length === 0) {
         setResult({
           kind: 'error',
-          message: `No se encontró ningún voluntario para “${value}”.`,
+          message: `No volunteer was found for “${value}”.`,
         });
         return;
       }
@@ -70,8 +70,8 @@ export default function Verificar() {
       setResult({
         kind: 'error',
         message:
-          'No se pudo contactar el servidor de verificación. ' +
-          'Verifica tu conexión o inténtalo más tarde. (' +
+          'The verification server could not be reached. ' +
+          'Check your connection or try again later. (' +
           message +
           ')',
       });
@@ -83,29 +83,29 @@ export default function Verificar() {
   return (
     <main className="wrap">
       <div className="lang-switch">
-        <Link href="/en/verify" hrefLang="en">
-          English
+        <Link href="/verificar" hrefLang="es">
+          Español
         </Link>
       </div>
       <div className="topbar">
-        <Link href="/">&larr; Inicio</Link>
+        <Link href="/en">&larr; Home</Link>
       </div>
 
-      <h1>Verificar Voluntario</h1>
+      <h1>Verify a volunteer</h1>
       <h2>
-        Confirma que una persona pertenece a la red de voluntarios buscándola por su cédula, nombre
-        o apellido.
+        Confirm that a person belongs to the volunteer network by searching for
+        them by ID number, first name or last name.
       </h2>
 
       <div className="panel">
         <form onSubmit={onSubmit} autoComplete="off">
           <div className="field">
-            <label htmlFor="q">Cédula, nombre o apellido</label>
+            <label htmlFor="q">ID number, first name or last name</label>
             <input
               type="text"
               id="q"
               name="q"
-              placeholder="Ej. 12345678 o María González"
+              placeholder="e.g. 12345678 or María González"
               required
               autoFocus
               value={query}
@@ -116,18 +116,18 @@ export default function Verificar() {
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 1l9 4v6c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4zm-1.2 13.4l5.3-5.3-1.4-1.4-3.9 3.9-1.9-1.9-1.4 1.4 3.3 3.3z" />
             </svg>
-            Verificar
+            Verify
           </button>
         </form>
 
         <div id="result" aria-live="polite">
-          {result?.kind === 'loading' && <Spinner>Buscando…</Spinner>}
+          {result?.kind === 'loading' && <Spinner>Searching…</Spinner>}
           {result?.kind === 'error' && <Alert kind="error">{result.message}</Alert>}
           {result?.kind === 'results' && (
             <>
               {result.volunteers.length > 1 && (
                 <p className="section-sub" style={{ marginTop: '1rem' }}>
-                  {result.volunteers.length} voluntarios coinciden con “{result.query}”.
+                  {result.volunteers.length} volunteers match “{result.query}”.
                 </p>
               )}
               {result.volunteers.map((v) => (
