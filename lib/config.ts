@@ -4,7 +4,7 @@
 // The anon keys are PUBLIC by design (safe in the browser).
 
 export interface AeConfig {
-  env: 'local' | 'production' | 'preview';
+  env: "local" | "production" | "preview";
   apiBase: string;
   supabaseUrl: string;
   supabaseAnonKey: string;
@@ -14,44 +14,44 @@ export interface AeConfig {
 }
 
 const PROD_HOSTS = [
-  'aquiestamosvenezuela.com',
-  'www.aquiestamosvenezuela.com',
-  'admin.aquiestamosvenezuela.com',
-  'registro.aquiestamosvenezuela.com',
-  'aqui-estamos-front.vercel.app',
+  "aquiestamosvenezuela.com",
+  "www.aquiestamosvenezuela.com",
+  "admin.aquiestamosvenezuela.com",
+  "registro.aquiestamosvenezuela.com",
+  "aqui-estamos-front.vercel.app",
 ];
 
 const PROD = {
-  supabaseUrl: 'https://zsffpnbjexnjpuyudsvr.supabase.co',
+  supabaseUrl: "https://zsffpnbjexnjpuyudsvr.supabase.co",
   supabaseAnonKey:
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzZmZwbmJqZXhuanB1eXVkc3ZyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0OTkyNDEsImV4cCI6MjA5ODA3NTI0MX0.nx0hena4fl0MOxdgyROdrZVnxiYmEd40lCZa_Q-ReSQ',
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzZmZwbmJqZXhuanB1eXVkc3ZyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0OTkyNDEsImV4cCI6MjA5ODA3NTI0MX0.nx0hena4fl0MOxdgyROdrZVnxiYmEd40lCZa_Q-ReSQ",
 };
 const DEV = {
-  supabaseUrl: 'https://qycxgscxuvfrspogocvs.supabase.co',
+  supabaseUrl: "https://qycxgscxuvfrspogocvs.supabase.co",
   supabaseAnonKey:
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5Y3hnc2N4dXZmcnNwb2dvY3ZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI1MDMyNzcsImV4cCI6MjA5ODA3OTI3N30.4oQaczS9ddOLyZG6FJPQvdvcoRavGByNZJTADNWIUZI',
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5Y3hnc2N4dXZmcnNwb2dvY3ZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI1MDMyNzcsImV4cCI6MjA5ODA3OTI3N30.4oQaczS9ddOLyZG6FJPQvdvcoRavGByNZJTADNWIUZI",
 };
 
 export function getConfig(): AeConfig {
-  const host = typeof window !== 'undefined' ? window.location.hostname : '';
-  const origin = typeof window !== 'undefined' ? window.location.origin : '';
-  const isLocal = host === 'localhost' || host === '127.0.0.1';
+  const host = typeof window !== "undefined" ? window.location.hostname : "";
+  const origin = typeof window !== "undefined" ? window.location.origin : "";
+  const isLocal = host === "localhost" || host === "127.0.0.1";
   const isProd = PROD_HOSTS.includes(host);
 
   const sb = isProd ? PROD : DEV;
   const apiBase = isLocal
-    ? 'http://localhost:8000'
+    ? "http://localhost:8000"
     : isProd
-    ? 'https://aqui-estamos-back.vercel.app'
-    : origin.replace('aqui-estamos-front', 'aqui-estamos-back');
+      ? "https://aqui-estamos-back.vercel.app"
+      : origin.replace("aqui-estamos-front", "aqui-estamos-back");
 
   return {
-    env: isLocal ? 'local' : isProd ? 'production' : 'preview',
+    env: isLocal ? "local" : isProd ? "production" : "preview",
     apiBase,
     supabaseUrl: sb.supabaseUrl,
     supabaseAnonKey: sb.supabaseAnonKey,
-    ayudarFormUrl: 'https://forms.gle/LUDqmrv8QQ4dmjZh9',
-    registroFormUrl: 'https://forms.gle/CeaiBpMKw1AGk9rf8',
-    instagramUrl: 'https://www.instagram.com/aqui.estamos.vnzl',
+    ayudarFormUrl: "https://forms.gle/4L6Uc3KQyZ9hbyNF6",
+    registroFormUrl: "https://forms.gle/CeaiBpMKw1AGk9rf8",
+    instagramUrl: "https://www.instagram.com/aqui.estamos.vnzl",
   };
 }
