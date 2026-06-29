@@ -9,6 +9,11 @@ export const metadata = {
 export default function Privacidad() {
   return (
     <main className="wrap doc">
+      <div className="lang-switch">
+        <Link href="/en/privacy" hrefLang="en">
+          English
+        </Link>
+      </div>
       <div className="topbar">
         <Link href="/">&larr; Inicio</Link>
       </div>
