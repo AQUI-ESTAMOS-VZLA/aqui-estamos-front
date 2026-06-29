@@ -69,6 +69,16 @@ em { font-style: italic; }
 ul.steps, ol.steps { padding-left: 1.2rem; margin: 0 0 1.25rem; }
 ul.steps li, ol.steps li { margin-bottom: .5rem; }
 
+/* Language switch (ES/EN) — small link at the top-right of the landing pages */
+.lang-switch { display: flex; justify-content: flex-end; margin: -1rem 0 .5rem; }
+.lang-switch a {
+  display: inline-flex; align-items: center; gap: .35rem;
+  padding: .35rem .75rem; border: 1.5px solid var(--border); border-radius: 999px;
+  color: var(--ink); text-decoration: none; font-weight: 600; font-size: .85rem;
+}
+.lang-switch a::before { content: "🌐"; font-size: .9em; }
+.lang-switch a:hover { background: #0a0a0a; color: #fff; border-color: #0a0a0a; }
+
 .divider { border: 0; border-top: 1px solid var(--border); margin: 2.25rem 0; }
 .center { text-align: center; }
 .muted { color: var(--muted); }
