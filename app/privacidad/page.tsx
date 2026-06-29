@@ -17,10 +17,21 @@ export default function Privacidad() {
 
       <section>
         <h3>¿Qué información es pública?</h3>
+        <p>
+          Ninguna. Aquí Estamos no publica información personal de las personas
+          registradas: no se muestran nombres, fotografías, edad, ciudad,
+          fecha, estado ni número de registro. La búsqueda pública únicamente
+          confirma si existe un registro; no revela ningún dato de la persona.
+        </p>
+      </section>
+
+      <section>
+        <h3>¿Qué información es privada?</h3>
+        <p>Toda la información de un registro es privada. Esto incluye:</p>
         <ul>
           <li>Nombre y apellido.</li>
           <li>Fotografía principal.</li>
-          <li>Edad aproximada (opcional).</li>
+          <li>Edad aproximada.</li>
           <li>Ciudad o municipio del registro.</li>
           <li>Fecha del registro.</li>
           <li>
@@ -28,12 +39,6 @@ export default function Privacidad() {
             exista confirmación oficial).
           </li>
           <li>Número único del registro.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>¿Qué información es privada?</h3>
-        <ul>
           <li>Dirección exacta.</li>
           <li>Coordenadas GPS.</li>
           <li>Hospital o refugio específico.</li>
@@ -49,9 +54,9 @@ export default function Privacidad() {
       <section>
         <h3>¿Qué se puede buscar?</h3>
         <p>
-          La búsqueda pública permite consultar por nombre, apellido, nombre completo, fotografía (en
-          una etapa futura mediante reconocimiento facial) o número de registro. El sistema únicamente
-          confirma la existencia del registro.
+          La búsqueda pública permite consultar por nombre, apellido, nombre completo o fotografía (en
+          una etapa futura mediante reconocimiento facial). El sistema únicamente confirma la
+          existencia del registro.
         </p>
       </section>
 
@@ -83,11 +88,11 @@ export default function Privacidad() {
             </tr>
           </thead>
           <tbody>
-            <tr><td>Nombre</td><td className="c"><span className="yes">✓</span></td><td className="c"></td></tr>
-            <tr><td>Fotografía principal</td><td className="c"><span className="yes">✓</span></td><td className="c"></td></tr>
-            <tr><td>Ciudad / Municipio</td><td className="c"><span className="yes">✓</span></td><td className="c"></td></tr>
-            <tr><td>Fecha del registro</td><td className="c"><span className="yes">✓</span></td><td className="c"></td></tr>
-            <tr><td>Estado</td><td className="c"><span className="yes">✓</span></td><td className="c"></td></tr>
+            <tr><td>Nombre</td><td className="c"></td><td className="c"><span className="yes">✓</span></td></tr>
+            <tr><td>Fotografía principal</td><td className="c"></td><td className="c"><span className="yes">✓</span></td></tr>
+            <tr><td>Ciudad / Municipio</td><td className="c"></td><td className="c"><span className="yes">✓</span></td></tr>
+            <tr><td>Fecha del registro</td><td className="c"></td><td className="c"><span className="yes">✓</span></td></tr>
+            <tr><td>Estado</td><td className="c"></td><td className="c"><span className="yes">✓</span></td></tr>
             <tr><td>Dirección exacta</td><td className="c"></td><td className="c"><span className="yes">✓</span></td></tr>
             <tr><td>Hospital o refugio específico</td><td className="c"></td><td className="c"><span className="yes">✓</span></td></tr>
             <tr><td>Teléfono</td><td className="c"></td><td className="c"><span className="yes">✓</span></td></tr>
