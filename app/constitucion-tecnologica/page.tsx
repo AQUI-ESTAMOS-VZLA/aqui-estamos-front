@@ -9,6 +9,11 @@ export const metadata = {
 export default function ConstitucionTecnologica() {
   return (
     <main className="wrap doc">
+      <div className="lang-switch">
+        <Link href="/en/technological-constitution" hrefLang="en">
+          English
+        </Link>
+      </div>
       <div className="topbar">
         <Link href="/">&larr; Inicio</Link>
       </div>

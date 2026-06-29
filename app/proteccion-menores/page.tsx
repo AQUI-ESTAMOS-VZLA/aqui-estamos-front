@@ -10,6 +10,11 @@ export const metadata = {
 export default function ProteccionMenores() {
   return (
     <main className="wrap doc">
+      <div className="lang-switch">
+        <Link href="/en/child-protection" hrefLang="en">
+          English
+        </Link>
+      </div>
       <div className="topbar">
         <Link href="/">&larr; Inicio</Link>
       </div>
