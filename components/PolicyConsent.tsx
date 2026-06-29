@@ -2,14 +2,38 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { getConfig, AeConfig } from '@/lib/config';
-import { CHILD_POLICY } from '@/lib/policy';
+import { CHILD_POLICY, CHILD_POLICY_EN } from '@/lib/policy';
 
 type FormKey = Extract<keyof AeConfig, 'ayudarFormUrl' | 'registroFormUrl'>;
+
+const STRINGS = {
+  es: {
+    back: '← Inicio',
+    noticeLabel: 'Aviso importante.',
+    read: (t: string) => `Leer la ${t}.`,
+    mustAccept: 'Debes aceptar la política para continuar.',
+    backHome: 'Volver al inicio',
+    switchLabel: 'English',
+    homeHref: '/',
+  },
+  en: {
+    back: '← Home',
+    noticeLabel: 'Important notice.',
+    read: (t: string) => `Read the ${t}.`,
+    mustAccept: 'You must accept the policy to continue.',
+    backHome: 'Back to home',
+    switchLabel: 'Español',
+    homeHref: '/en',
+  },
+};
 
 /**
  * Consent interstitial shown before an external Google Form (volunteer sign-up
  * or registro upload). Enforces the child-protection notice + a mandatory
  * acceptance checkbox before letting the user continue to the form.
+ *
+ * `lang` defaults to 'es' so existing Spanish pages are unchanged. Pass `lang="en"`
+ * (and `switchHref` to the Spanish counterpart) for the /en pages.
  */
 export function PolicyConsent({
   title,
@@ -17,12 +41,16 @@ export function PolicyConsent({
   formKey,
   continueLabel,
   extraNote,
+  lang = 'es',
+  switchHref,
 }: {
   title: string;
   subtitle: string;
   formKey: FormKey;
   continueLabel: string;
   extraNote?: string;
+  lang?: 'es' | 'en';
+  switchHref?: string;
 }) {
   const [accepted, setAccepted] = useState(false);
   const [formUrl, setFormUrl] = useState('');
@@ -30,17 +58,28 @@ export function PolicyConsent({
     setFormUrl(getConfig()[formKey]);
   }, [formKey]);
 
+  const isEn = lang === 'en';
+  const t = isEn ? STRINGS.en : STRINGS.es;
+  const policy = isEn ? CHILD_POLICY_EN : CHILD_POLICY;
+
   return (
     <main className="wrap">
+      {switchHref && (
+        <div className="lang-switch">
+          <Link href={switchHref} hrefLang={isEn ? 'es' : 'en'}>
+            {t.switchLabel}
+          </Link>
+        </div>
+      )}
       <div className="topbar">
-        <Link href="/">&larr; Inicio</Link>
+        <Link href={t.homeHref}>{t.back}</Link>
       </div>
       <img className="hero-img" src="/assets/images/image01.jpg" alt="Aqui Estamos Venezuela" />
       <h1>{title}</h1>
       <h2>{subtitle}</h2>
 
       <div className="alert info" role="note">
-        <strong>Aviso importante.</strong> {CHILD_POLICY.notice}
+        <strong>{t.noticeLabel}</strong> {policy.notice}
         {extraNote ? ' ' + extraNote : ''}
       </div>
 
@@ -53,8 +92,8 @@ export function PolicyConsent({
             style={{ width: 'auto', marginTop: '.25rem' }}
           />
           <span>
-            {CHILD_POLICY.acceptanceText}{' '}
-            <Link href={CHILD_POLICY.path}>Leer la {CHILD_POLICY.title}.</Link>
+            {policy.acceptanceText}{' '}
+            <Link href={policy.path}>{t.read(policy.title)}</Link>
           </span>
         </label>
 
@@ -69,15 +108,15 @@ export function PolicyConsent({
         )}
         {!accepted && (
           <p className="muted small" style={{ margin: '.85rem 0 0' }}>
-            Debes aceptar la política para continuar.
+            {t.mustAccept}
           </p>
         )}
       </div>
 
       <footer>
-        <Link href="/">Volver al inicio</Link>
+        <Link href={t.homeHref}>{t.backHome}</Link>
         &nbsp;·&nbsp;
-        <Link href={CHILD_POLICY.path}>{CHILD_POLICY.title}</Link>
+        <Link href={policy.path}>{policy.title}</Link>
       </footer>
     </main>
   );

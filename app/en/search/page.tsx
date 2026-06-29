@@ -1,16 +1,16 @@
 "use client";
 import Link from "next/link";
 
-export default function Busqueda() {
+export default function SearchEn() {
   return (
     <main className="wrap">
       <div className="lang-switch">
-        <Link href="/en/search" hrefLang="en">
-          English
+        <Link href="/busqueda" hrefLang="es">
+          Español
         </Link>
       </div>
       <div className="topbar">
-        <Link href="/">&larr; Inicio</Link>
+        <Link href="/en">&larr; Home</Link>
       </div>
 
       <div
@@ -24,19 +24,19 @@ export default function Busqueda() {
           🚧
         </div>
         <h1 style={{ marginBottom: ".5rem" }}>
-          Estamos fortaleciendo la seguridad del sistema
+          We are strengthening the security of the system
         </h1>
         <p className="section-sub" style={{ maxWidth: 460, margin: "0 auto" }}>
-          La búsqueda de personas estará disponible muy pronto. Estamos
-          ajustando esta herramienta con especial cuidado para proteger la
-          identidad de las personas registradas y garantizar un proceso seguro.
+          Searching for people will be available very soon. We are tuning this
+          tool with special care to protect the identity of registered persons
+          and to guarantee a secure process.
         </p>
         <p className="section-sub" style={{ maxWidth: 460, margin: "0 auto" }}>
-          Gracias por tu paciencia.
+          Thank you for your patience.
         </p>
         <div style={{ marginTop: "1.6rem" }}>
-          <Link className="btn btn-primary" href="/" role="button">
-            Volver al inicio
+          <Link className="btn btn-primary" href="/en" role="button">
+            Back to home
           </Link>
         </div>
       </div>
