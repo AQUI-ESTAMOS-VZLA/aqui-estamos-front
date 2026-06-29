@@ -33,40 +33,44 @@ export default function AdminPage() {
     );
 
   return (
-    <main className="wrap">
-      <img className="hero-img" src="/assets/images/image01.jpg" alt="Aqui Estamos Venezuela" />
-      <h1>Panel de Administración</h1>
-      <div className="topbar">
-        <span className="badge ok">Administrador</span>
-        <span className="muted small">{gate.email}</span>
-        <a href="#" style={{ marginLeft: 'auto' }} onClick={(e) => { e.preventDefault(); gate.logout(); }}>
-          Salir
-        </a>
+    <main className="admin-main">
+      <div className="admin-header">
+        <div>
+          <h1 className="admin-title">Panel de Administración</h1>
+          <span className="muted small">Aquí Estamos Venezuela · {gate.email}</span>
+        </div>
+        <div className="admin-user">
+          <span className="badge ok">Administrador</span>
+          <a href="#" onClick={(e) => { e.preventDefault(); gate.logout(); }}>Salir</a>
+        </div>
       </div>
 
       <VolunteersPanel authHeader={gate.authHeader} onAuthFail={gate.forceRelogin} />
-      <VolunteerRegister authHeader={gate.authHeader} onAuthFail={gate.forceRelogin} />
-      <Allowlist
-        title="Administradores"
-        subtitle="Personas autorizadas a entrar a este panel. Agrega o quita correos."
-        listPath="/api/admins"
-        addPath="/api/admins"
-        removePath="/api/admins"
-        dataKey="admins"
-        authHeader={gate.authHeader}
-        onAuthFail={gate.forceRelogin}
-        showTags
-      />
-      <Allowlist
-        title="Voluntarios de registro"
-        subtitle="Personas autorizadas a usar la consola de registros (registro.<dominio>)."
-        listPath="/api/registro-users"
-        addPath="/api/registro-users"
-        removePath="/api/registro-users"
-        dataKey="users"
-        authHeader={gate.authHeader}
-        onAuthFail={gate.forceRelogin}
-      />
+
+      <div className="admin-grid">
+        <VolunteerRegister authHeader={gate.authHeader} onAuthFail={gate.forceRelogin} />
+        <Allowlist
+          title="Administradores"
+          subtitle="Personas autorizadas a entrar a este panel. Agrega o quita correos."
+          listPath="/api/admins"
+          addPath="/api/admins"
+          removePath="/api/admins"
+          dataKey="admins"
+          authHeader={gate.authHeader}
+          onAuthFail={gate.forceRelogin}
+          showTags
+        />
+        <Allowlist
+          title="Voluntarios de registro"
+          subtitle="Personas autorizadas a usar la consola de registros (registro.<dominio>)."
+          listPath="/api/registro-users"
+          addPath="/api/registro-users"
+          removePath="/api/registro-users"
+          dataKey="users"
+          authHeader={gate.authHeader}
+          onAuthFail={gate.forceRelogin}
+        />
+      </div>
     </main>
   );
 }
@@ -141,19 +145,22 @@ function VolunteersPanel({ authHeader, onAuthFail }: { authHeader: Hdr; onAuthFa
             style={{ width: '100%', marginBottom: '.9rem' }}
           />
           {filtered.length === 0 && <p className="muted small">Sin resultados.</p>}
-          <div className="roster">
+          <div className="roster-grid">
             {filtered.map((v) => {
               const active = isActive(v);
               return (
-                <div className="roster-row" key={v.cedula}>
-                  {v.photo_url ? <img className="roster-photo" src={v.photo_url} alt="" /> : <div className="roster-photo" />}
-                  <div className="roster-info">
-                    <div className="roster-name">
-                      {active && <span className="dot-on" title="Activo hoy" />}
-                      {v.first_name} {v.last_name}
-                    </div>
-                    <div className="muted small">{v.cedula}{v.role ? ' · ' + v.role : ''}</div>
+                <div className={'roster-card' + (active ? ' active' : '')} key={v.cedula}>
+                  {active && <span className="dot-on card-dot" title="Activo hoy" />}
+                  {v.photo_url ? (
+                    <img className="roster-photo" src={v.photo_url} alt="" />
+                  ) : (
+                    <div className="roster-photo" />
+                  )}
+                  <div className="roster-card-name">
+                    {v.first_name} {v.last_name}
                   </div>
+                  {v.role && <div className="muted small">{v.role}</div>}
+                  <div className="muted small">{v.cedula}</div>
                   <button
                     type="button"
                     className={'rollbtn' + (active ? ' on' : '')}
