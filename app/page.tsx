@@ -129,6 +129,8 @@ export default function Home() {
         <Link href="/privacidad">Política de Búsqueda y Privacidad</Link>
         &nbsp;·&nbsp;
         <Link href="/proteccion-menores">Protección de Niños, Niñas y Adolescentes</Link>
+        &nbsp;·&nbsp;
+        <Link href="/constitucion-tecnologica">Constitución Tecnológica</Link>
       </footer>
     </main>
   );
