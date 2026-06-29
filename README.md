@@ -43,6 +43,32 @@ Run the backend (`aqui-estamos-back`) on `:8000` for the verify/register flows.
 Import the repo, framework preset **Other**, no build command, output = repo
 root. `cleanUrls` is enabled so `/verificar` resolves to `verificar.html`.
 
-## Branch
+## Flujo de trabajo (ramas y Pull Requests)
 
-Work for this POC lives on **`rod/vercel-poc`**.
+Trabajamos con **Pull Requests**. Cada rama tiene un rol:
+
+- **`main`** — rama de integración y trabajo del día a día. Se mantiene siempre
+  actualizada y se puede commitear/abrir PRs contra ella libremente.
+- **`prod`** — rama de **producción**: es la que se publica en
+  [aquiestamosvenezuela.com](https://aquiestamosvenezuela.com). Está
+  **protegida**: no se permite push directo ni `force-push`; los cambios entran
+  **únicamente por Pull Request**.
+
+### Cómo contribuir
+
+1. Crea una rama a partir de `main` (o, editando en GitHub, elige *"Create a new
+   branch and start a pull request"*).
+2. Abre un **Pull Request hacia `main`** y revísalo allí.
+3. Para publicar a producción, abre un **PR de `main` → `prod`** y haz *merge*.
+
+### Despliegue
+
+- Al hacer *merge* en **`prod`** se despliega automáticamente a producción
+  (siempre que la integración **Vercel ↔ GitHub** esté conectada).
+- Cada PR genera una **URL de vista previa (preview)** en Vercel para revisar los
+  cambios antes de publicarlos.
+
+> Nota: mientras la integración de Vercel con GitHub no esté conectada, los PR
+> funcionan igual en GitHub, pero el despliegue se hace manualmente con
+> `vercel --prod`. La rama histórica `rod/vercel-poc` queda en desuso; el trabajo
+> nuevo va sobre `main`.

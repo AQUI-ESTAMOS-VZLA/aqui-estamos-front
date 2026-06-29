@@ -73,9 +73,10 @@ export default function Home() {
 
       <h3>¿Qué hacemos?</h3>
       <p>
-        Coordinamos una red de voluntarios, profesionales e instituciones que
-        colaboran para documentar de forma responsable situaciones de emergencia
-        y facilitar procesos seguros de búsqueda e identificación de personas.
+        Estamos desarrollando una red de colaboración entre voluntarios,
+        profesionales y futuros aliados institucionales para apoyar procesos
+        seguros de documentación, verificación y localización de personas
+        afectadas por emergencias.
       </p>
       <p>
         La plataforma ha sido diseñada para priorizar la protección de la
