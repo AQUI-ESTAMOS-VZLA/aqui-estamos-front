@@ -51,7 +51,7 @@ export function getConfig(): AeConfig {
     supabaseUrl: sb.supabaseUrl,
     supabaseAnonKey: sb.supabaseAnonKey,
     ayudarFormUrl: "https://forms.gle/4L6Uc3KQyZ9hbyNF6",
-    registroFormUrl: "https://forms.gle/CeaiBpMKw1AGk9rf8",
+    registroFormUrl: "https://forms.gle/KCXXYQW8WTru6pU97",
     instagramUrl: "https://www.instagram.com/aqui.estamos.vnzl",
   };
 }
