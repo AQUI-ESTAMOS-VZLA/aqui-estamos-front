@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { getConfig } from '@/lib/config';
 import { useAuthGate } from '@/components/useAuthGate';
 import { LoginGate } from '@/components/LoginGate';
-import { Alert, Spinner, Field, Row } from '@/components/ui';
+import { Alert, Spinner, Field } from '@/components/ui';
 import { Volunteer, AdminEntry } from '@/lib/types';
 
 type Hdr = () => Record<string, string>;
@@ -44,7 +44,7 @@ export default function AdminPage() {
         </a>
       </div>
 
-      <VolunteerLookup />
+      <VolunteersPanel authHeader={gate.authHeader} onAuthFail={gate.forceRelogin} />
       <VolunteerRegister authHeader={gate.authHeader} onAuthFail={gate.forceRelogin} />
       <Allowlist
         title="Administradores"
@@ -71,48 +71,102 @@ export default function AdminPage() {
   );
 }
 
-function VolunteerLookup() {
-  const [cedula, setCedula] = useState('');
-  const [state, setState] = useState<{ kind: string; v?: Volunteer; msg?: string }>({ kind: 'idle' });
+function VolunteersPanel({ authHeader, onAuthFail }: { authHeader: Hdr; onAuthFail: () => void }) {
+  const [vols, setVols] = useState<Volunteer[] | null>(null);
+  const [today, setToday] = useState('');
+  const [err, setErr] = useState('');
+  const [filter, setFilter] = useState('');
+  const [busy, setBusy] = useState('');
 
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!cedula.trim()) return;
-    setState({ kind: 'loading' });
+  const load = useCallback(async () => {
+    setErr('');
     try {
-      const r = await fetch(`${getConfig().apiBase}/api/volunteers/verify?cedula=${encodeURIComponent(cedula.trim())}`);
-      if (r.status === 404) return setState({ kind: 'error', msg: `No se encontró ningún voluntario con la cédula ${cedula}.` });
+      const r = await fetch(getConfig().apiBase + '/api/volunteers', { headers: authHeader() });
+      if (r.status === 401 || r.status === 403) { onAuthFail(); return; }
       if (!r.ok) throw new Error('HTTP ' + r.status);
       const d = await r.json();
-      setState({ kind: 'ok', v: d.volunteer });
-    } catch (err: any) {
-      setState({ kind: 'error', msg: 'Error al buscar. (' + err.message + ')' });
-    }
+      setVols(d.volunteers || []);
+      setToday(d.today || '');
+    } catch (e: any) { setErr('No se pudo cargar la lista. (' + e.message + ')'); }
+  }, [authHeader, onAuthFail]);
+
+  useEffect(() => { load(); }, [load]);
+
+  const isActive = (v: Volunteer) => !!v.last_active_at && v.last_active_at === today;
+
+  const setPresent = async (v: Volunteer, present: boolean) => {
+    setBusy(v.cedula);
+    setVols((prev) => prev && prev.map((x) => (x.cedula === v.cedula ? { ...x, last_active_at: present ? today : null } : x)));
+    try {
+      const r = await fetch(getConfig().apiBase + '/api/volunteers/rollcall', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', ...authHeader() },
+        body: JSON.stringify({ cedula: v.cedula, present }),
+      });
+      if (r.status === 401 || r.status === 403) { onAuthFail(); return; }
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+    } catch {
+      setVols((prev) => prev && prev.map((x) => (x.cedula === v.cedula ? { ...x, last_active_at: present ? null : today } : x)));
+      setErr('No se pudo actualizar la asistencia. Intenta de nuevo.');
+    } finally { setBusy(''); }
   };
+
+  const all = vols || [];
+  const q = filter.trim().toLowerCase();
+  const filtered = q
+    ? all.filter((v) => `${v.first_name} ${v.last_name} ${v.cedula} ${v.role || ''}`.toLowerCase().includes(q))
+    : all;
+  const activeCount = all.filter(isActive).length;
 
   return (
     <div className="panel">
-      <h3 className="section-title">Buscar voluntario</h3>
-      <p className="section-sub">Consulta la ficha de un voluntario por su cédula.</p>
-      <form onSubmit={submit} autoComplete="off">
-        <Field id="v_cedula" label="Cédula">
-          <input type="text" id="v_cedula" inputMode="numeric" value={cedula} onChange={(e) => setCedula(e.target.value)} placeholder="Ej. 12345678" required />
-        </Field>
-        <button type="submit" className="btn">Buscar</button>
-      </form>
-      {state.kind === 'loading' && <Spinner>Buscando…</Spinner>}
-      {state.kind === 'error' && <Alert kind="error">{state.msg}</Alert>}
-      {state.kind === 'ok' && state.v && (
-        <div className="card">
-          {state.v.photo_url ? <img className="photo" src={state.v.photo_url} alt="Foto" /> : <div className="photo" />}
-          <div className="info">
-            <h3>{state.v.first_name} {state.v.last_name}</h3>
-            <Row k="Cédula" v={state.v.cedula} />
-            <Row k="Rol" v={state.v.role} />
-            <Row k="Estado" v={state.v.status} />
-            <Row k="Registrado" v={state.v.created_at?.substring(0, 10)} />
+      <h3 className="section-title">Pase de lista — voluntarios</h3>
+      <p className="section-sub">Marca quién está activo en la jornada de hoy. Esta es la lista completa.</p>
+
+      <div className="stat-row">
+        <div className="stat"><span className="stat-n">{all.length}</span><span className="stat-l">Voluntarios</span></div>
+        <div className="stat"><span className="stat-n" style={{ color: '#16a34a' }}>{activeCount}</span><span className="stat-l">Activos hoy</span></div>
+      </div>
+
+      {!vols && !err && <Spinner>Cargando…</Spinner>}
+      {err && <Alert kind="error">{err}</Alert>}
+
+      {vols && (
+        <>
+          <input
+            type="search"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            placeholder="Filtrar por nombre, cédula o rol…"
+            style={{ width: '100%', marginBottom: '.9rem' }}
+          />
+          {filtered.length === 0 && <p className="muted small">Sin resultados.</p>}
+          <div className="roster">
+            {filtered.map((v) => {
+              const active = isActive(v);
+              return (
+                <div className="roster-row" key={v.cedula}>
+                  {v.photo_url ? <img className="roster-photo" src={v.photo_url} alt="" /> : <div className="roster-photo" />}
+                  <div className="roster-info">
+                    <div className="roster-name">
+                      {active && <span className="dot-on" title="Activo hoy" />}
+                      {v.first_name} {v.last_name}
+                    </div>
+                    <div className="muted small">{v.cedula}{v.role ? ' · ' + v.role : ''}</div>
+                  </div>
+                  <button
+                    type="button"
+                    className={'rollbtn' + (active ? ' on' : '')}
+                    disabled={busy === v.cedula}
+                    onClick={() => setPresent(v, !active)}
+                  >
+                    {active ? '✓ Presente' : 'Marcar presente'}
+                  </button>
+                </div>
+              );
+            })}
           </div>
-        </div>
+        </>
       )}
     </div>
   );

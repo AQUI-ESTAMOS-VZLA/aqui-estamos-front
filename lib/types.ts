@@ -8,6 +8,7 @@ export interface Volunteer {
   photo_url?: string | null;
   registered_by?: string | null;
   created_at?: string;
+  last_active_at?: string | null;
 }
 
 export interface MediaItem {
