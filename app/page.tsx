@@ -120,6 +120,11 @@ export default function Home() {
           Leer la política completa
         </Link>
       </p>
+      <p>
+        <Link className="btn" href="/constitucion-tecnologica" role="button">
+          Leer la Constitución Tecnológica
+        </Link>
+      </p>
 
       <footer>
         <a href={instagram} target="_blank" rel="noopener noreferrer">
