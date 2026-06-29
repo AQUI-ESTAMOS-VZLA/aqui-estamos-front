@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { getConfig } from '@/lib/config';
 import { useAuthGate } from '@/components/useAuthGate';
 import { LoginGate } from '@/components/LoginGate';
-import { PolicyGate } from '@/components/PolicyGate';
 import { Alert, Spinner, Field } from '@/components/ui';
 import { Volunteer, AdminEntry } from '@/lib/types';
 
@@ -46,7 +45,6 @@ export default function AdminPage() {
         </div>
       </div>
 
-      <PolicyGate authHeader={gate.authHeader} onAuthFail={gate.forceRelogin}>
       <VolunteersPanel authHeader={gate.authHeader} onAuthFail={gate.forceRelogin} />
 
       <div className="admin-grid">
@@ -73,7 +71,6 @@ export default function AdminPage() {
           onAuthFail={gate.forceRelogin}
         />
       </div>
-      </PolicyGate>
     </main>
   );
 }

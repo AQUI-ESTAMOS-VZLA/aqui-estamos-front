@@ -9,6 +9,7 @@ export interface AeConfig {
   supabaseUrl: string;
   supabaseAnonKey: string;
   ayudarFormUrl: string;
+  registroFormUrl: string;
   instagramUrl: string;
 }
 
@@ -50,6 +51,7 @@ export function getConfig(): AeConfig {
     supabaseUrl: sb.supabaseUrl,
     supabaseAnonKey: sb.supabaseAnonKey,
     ayudarFormUrl: 'https://forms.gle/LUDqmrv8QQ4dmjZh9',
+    registroFormUrl: 'https://forms.gle/CeaiBpMKw1AGk9rf8',
     instagramUrl: 'https://www.instagram.com/aqui.estamos.vnzl',
   };
 }
