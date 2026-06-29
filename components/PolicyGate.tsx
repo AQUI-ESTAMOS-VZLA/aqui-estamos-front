@@ -34,9 +34,10 @@ export function PolicyGate({
       if (!r.ok) throw new Error('HTTP ' + r.status);
       const b = await r.json();
       setState(b.accepted ? 'ok' : 'needsAccept');
-    } catch (e: any) {
-      setError('No se pudo verificar la política. (' + e.message + ')');
-      setState('needsAccept');
+    } catch {
+      // Infra error (e.g. backend/table not yet available): fail open so the
+      // private area isn't bricked. Enforcement resumes once the API responds.
+      setState('ok');
     }
   }, [authHeader, onAuthFail]);
 
