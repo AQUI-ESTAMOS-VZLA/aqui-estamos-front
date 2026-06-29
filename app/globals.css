@@ -305,16 +305,19 @@ footer a { color: #0a0a0a; font-weight: 600; }
 .admin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 1rem; align-items: start; }
 
 .roster-grid {
-  display: grid; gap: .8rem;
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
 }
 .roster-card {
   position: relative; display: flex; flex-direction: column; align-items: center;
-  text-align: center; gap: .35rem; padding: 1rem .7rem;
-  border: 1px solid var(--border, #e7e7e7); border-radius: 14px; background: #fff;
+  text-align: center; gap: .45rem; padding: 1.1rem 1rem 1.2rem;
+  border: 1px solid var(--border, #e7e7e7); border-radius: 16px; background: #fff;
 }
 .roster-card.active { border-color: #16a34a; box-shadow: 0 0 0 1px rgba(34,197,94,.35); }
-.roster-card .roster-photo { width: 88px; height: 88px; border-radius: 12px; }
-.roster-card-name { font-weight: 600; line-height: 1.2; }
-.roster-card .rollbtn { width: 100%; margin-top: .4rem; }
+.roster-card .roster-photo {
+  width: 100%; height: 230px; border-radius: 12px;
+  object-fit: contain; background: #f3f4f6;
+}
+.roster-card-name { font-weight: 600; line-height: 1.2; font-size: 1.02rem; margin-top: .15rem; }
+.roster-card .rollbtn { width: 100%; margin-top: .5rem; padding: .55rem; }
 .card-dot { position: absolute; top: .6rem; right: .6rem; }
