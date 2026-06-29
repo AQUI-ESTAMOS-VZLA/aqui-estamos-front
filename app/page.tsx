@@ -1,21 +1,25 @@
-'use client';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { getConfig } from '@/lib/config';
+"use client";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { getConfig } from "@/lib/config";
 
 export default function Home() {
-  const [instagram, setInstagram] = useState('#');
+  const [instagram, setInstagram] = useState("#");
   useEffect(() => {
     setInstagram(getConfig().instagramUrl);
   }, []);
 
   return (
     <main className="wrap">
-      <img className="hero-img" src="/assets/images/image01.jpg" alt="Aqui Estamos Venezuela" />
+      <img
+        className="hero-img"
+        src="/assets/images/image01.jpg"
+        alt="Aqui Estamos Venezuela"
+      />
       <h1>Aqui Estamos Venezuela</h1>
       <h2>
-        Aquí Estamos vuelve a reactivarse. Una iniciativa que logró reunir a muchas familias durante
-        la tragedia de Vargas en 1999.
+        Red Ciudadana para la Localización Segura de Personas durante
+        Emergencias
       </h2>
 
       <ul className="buttons">
@@ -54,66 +58,121 @@ export default function Home() {
       </ul>
 
       <p className="lead">
-        Hoy somos una <strong>Red Ciudadana de Registro Audiovisual</strong> para ayudar a localizar
-        personas en hospitales y refugios durante emergencias, con un sistema integrado de
-        verificación de identidad para brindar mayor confianza y reducir la desinformación.
+        Aquí Estamos es una iniciativa ciudadana, independiente y sin fines de
+        lucro que desarrolla una red de colaboración para apoyar la localización
+        de personas afectadas por emergencias mediante un sistema seguro de
+        registro, verificación e intermediación de información.
       </p>
       <p>
-        Creamos juntos esta red ciudadana para apoyar a todas las personas afectadas por la
-        emergencia en Venezuela. Nuestro propósito es reunir familias, organizando información
-        confiable y coordinando un <strong>Registro Audiovisual Ciudadano</strong> que contribuya a la
-        búsqueda de personas, la identificación de necesidades y documentación responsable de la
-        emergencia.
-      </p>
-      <p>
-        <em>
-          No pertenecemos a ningún organismo oficial. Trabajamos de manera independiente, voluntaria,
-          colaborativa y sin fines de lucro.
-        </em>
+        Nuestro propósito es ayudar a reunir familias, reducir la desinformación
+        y facilitar que la información llegue de manera organizada a quienes
+        tienen la responsabilidad de proteger a las personas afectadas.
       </p>
 
       <hr className="divider" />
 
-      <h3>La idea, el proceso y el objetivo</h3>
+      <h3>¿Qué hacemos?</h3>
       <p>
-        Es un registro audiovisual de personas rescatadas sin identificación o con dificultades de
-        comunicación, creado para ayudar a reunirlas con sus familias.
+        Coordinamos una red de voluntarios, profesionales e instituciones que
+        colaboran para documentar de forma responsable situaciones de emergencia
+        y facilitar procesos seguros de búsqueda e identificación de personas.
       </p>
       <p>
-        <strong>El proceso:</strong>
+        La plataforma ha sido diseñada para priorizar la protección de la
+        identidad, la privacidad y la dignidad de las personas registradas.
       </p>
-      <ul className="steps">
-        <li>Voluntarios capacitados documentan en terreno.</li>
-        <li>Suben registros (foto/video + metadata) a la plataforma.</li>
-        <li>Equipos de verificación voluntaria revisan la información.</li>
-        <li>
-          El contenido se publica de forma responsable para consulta pública y puede ser compartido
-          con medios y entidades.
-        </li>
-      </ul>
+      <p>No buscamos publicar información.</p>
+      <p>
+        Buscamos facilitar que las personas puedan ser encontradas sin quedar
+        expuestas.
+      </p>
+
+      <hr className="divider" />
+
+      <h3>¿Cómo funciona?</h3>
+      <span>
+        <h4>1. Documentación responsable</h4>
+        <p>
+          Los voluntarios autorizados recopilan información siguiendo los
+          protocolos establecidos por Aquí Estamos.
+        </p>
+      </span>
+      <span>
+        <h4>2. Verificación</h4>
+        <p>
+          Cada registro es revisado por los equipos de coordinación antes de
+          incorporarse al sistema.
+        </p>
+      </span>
+      <span>
+        <h4>3. Búsqueda segura</h4>
+        <p>
+          Las personas que buscan a un familiar pueden aportar datos
+          descriptivos y, cuando corresponda, una fotografía de referencia.
+        </p>
+        <p>
+          La plataforma analiza la información disponible para determinar si
+          existe una posible coincidencia.
+        </p>
+      </span>
+      <span>
+        <h4>4. Intermediación institucional</h4>
+        <p>
+          Cuando se identifica una posible coincidencia, la plataforma no revela
+          la identidad ni la ubicación de la persona registrada.
+        </p>
+        <p>
+          El caso es derivado al equipo o institución responsable para realizar
+          el proceso de verificación correspondiente.
+        </p>
+      </span>
 
       <hr className="divider" />
 
       <h3>Nuestra Visión</h3>
-      <p>Muchas familias están buscando a sus seres queridos después de la emergencia.</p>
+      <p>Las emergencias pueden separar familias en cuestión de minutos.</p>
       <p>
-        Niños, adultos mayores, personas con Alzheimer o personas heridas pueden no estar en
-        condiciones de llamar por teléfono, recordar un número o comunicar su identidad por distintos
-        motivos.
+        Niños, personas mayores, pacientes hospitalizados, personas con
+        discapacidad o personas con dificultades para comunicarse pueden quedar
+        temporalmente sin posibilidad de informar dónde se encuentran.
       </p>
       <p>
-        En estos casos, una imagen puede ser la única forma de decir: <strong>&quot;Aquí estoy&quot;</strong>.
+        Creemos que la tecnología puede ayudar a encontrarlas sin que ello
+        implique exponer públicamente su identidad.
+      </p>
+      <p>
+        Por eso desarrollamos una infraestructura de intermediación humanitaria
+        que prioriza la protección de las personas por encima de la difusión de
+        información.
       </p>
 
       <hr className="divider" />
 
-      <h3>Protección de Niños, Niñas y Adolescentes y de Personas Vulnerables</h3>
+      <h3>
+        Protección de Niños, Niñas y Adolescentes y de Personas en Situación de
+        Vulnerabilidad
+      </h3>
       <p>
-        Nuestra plataforma está diseñada para <strong>evitar la exposición pública de las personas
-        registradas</strong>: no publica listados, fotografías, perfiles ni ubicaciones. Como medida
-        institucional vigente, <strong>Aquí Estamos no realiza registros audiovisuales de niños, niñas
-        y adolescentes</strong> hasta contar con protocolos especializados, asesoría jurídica y
-        acuerdos con las instituciones competentes.
+        La protección de las personas constituye el principio fundamental de
+        Aquí Estamos.
+      </p>
+      <p>
+        Nuestra plataforma está diseñada para evitar la exposición pública de la
+        identidad de las personas registradas. No publica listados de víctimas,
+        galerías de fotografías, perfiles individuales ni ubicaciones.
+      </p>
+      <p>
+        Como medida institucional vigente, Aquí Estamos{" "}
+        <strong>
+          no realiza registros audiovisuales de niños, niñas y adolescentes
+        </strong>
+        ni incorpora información que permita su identificación directa o
+        indirecta, hasta contar con protocolos especializados, asesoría jurídica
+        y acuerdos con las instituciones competentes.
+      </p>
+      <p>
+        Esta decisión forma parte de nuestro compromiso con la protección de la
+        infancia y con el desarrollo responsable de tecnología humanitaria.
       </p>
       <p>
         <Link className="btn" href="/proteccion-menores" role="button">
@@ -126,6 +185,16 @@ export default function Home() {
         </Link>
       </p>
 
+      <hr className="divider" />
+
+      <h3>Independencia</h3>
+
+      <p>Aquí Estamos no pertenece a ningún organismo oficial.</p>
+      <p>
+        Somos una iniciativa ciudadana, independiente, colaborativa y sin fines
+        de lucro.
+      </p>
+
       <footer>
         <a href={instagram} target="_blank" rel="noopener noreferrer">
           Instagram
@@ -133,7 +202,9 @@ export default function Home() {
         &nbsp;·&nbsp;
         <Link href="/privacidad">Política de Búsqueda y Privacidad</Link>
         &nbsp;·&nbsp;
-        <Link href="/proteccion-menores">Protección de Niños, Niñas y Adolescentes</Link>
+        <Link href="/proteccion-menores">
+          Protección de Niños, Niñas y Adolescentes
+        </Link>
         &nbsp;·&nbsp;
         <Link href="/constitucion-tecnologica">Constitución Tecnológica</Link>
       </footer>
