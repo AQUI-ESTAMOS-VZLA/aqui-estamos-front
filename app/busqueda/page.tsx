@@ -26,7 +26,9 @@ export default function Busqueda() {
           ajustando esta herramienta con especial cuidado para proteger la
           identidad de las personas registradas y garantizar un proceso seguro.
         </p>
-        <p>Gracias por tu paciencia.</p>
+        <p className="section-sub" style={{ maxWidth: 460, margin: "0 auto" }}>
+          Gracias por tu paciencia.
+        </p>
         <div style={{ marginTop: "1.6rem" }}>
           <Link className="btn btn-primary" href="/" role="button">
             Volver al inicio
