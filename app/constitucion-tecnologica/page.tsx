@@ -46,7 +46,7 @@ export default function ConstitucionTecnologica() {
       <section>
         <h3><span className="num">3.</span> Principios fundamentales</h3>
         <ul>
-          <li>La persona como centro del sistema.</li>
+          <li>Principio de seguridad, dignidad y voluntad para la persona registrada.</li>
           <li>Principio de No Exposición.</li>
           <li>Principio de Custodia Responsable.</li>
           <li>Privacidad desde el diseño.</li>
@@ -54,7 +54,6 @@ export default function ConstitucionTecnologica() {
           <li>Minimización de datos.</li>
           <li>Separación de identidades.</li>
           <li>Divulgación mínima.</li>
-          <li>Resiliencia ante incidentes.</li>
           <li>Supervisión humana en decisiones críticas.</li>
           <li>
             Protección reforzada de niños, niñas, adolescentes y demás personas en situación de
@@ -75,7 +74,7 @@ export default function ConstitucionTecnologica() {
       <section>
         <h3><span className="num">5.</span> Compromisos institucionales</h3>
         <p>
-          Aquí Estamos diseñará sus procesos para reducir riesgos, documentar decisiones técnicas
+          Aquí Estamos está diseñando sus procesos para reducir riesgos, documentar decisiones técnicas
           relevantes, revisar periódicamente sus controles de seguridad y mantener una mejora continua
           basada en evidencia y asesoría especializada.
         </p>
