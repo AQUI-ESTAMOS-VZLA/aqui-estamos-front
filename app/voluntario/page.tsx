@@ -4,6 +4,7 @@ import { PolicyConsent } from '@/components/PolicyConsent';
 export default function Voluntario() {
   return (
     <PolicyConsent
+      switchHref="/en/volunteer"
       title="Quiero ser voluntario"
       subtitle="Antes de inscribirte, lee y acepta nuestra política de protección de la infancia."
       formKey="ayudarFormUrl"
