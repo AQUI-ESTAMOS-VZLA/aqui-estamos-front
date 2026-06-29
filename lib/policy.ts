@@ -5,7 +5,6 @@
 export const CHILD_POLICY = {
   path: '/proteccion-menores',
   title: 'Política de Protección de Niños, Niñas y Adolescentes',
-  shortTitle: 'Política Temporal de Protección de Niños, Niñas y Adolescentes',
   // Notice shown before completing the volunteer sign-up (requirement 2).
   notice:
     'No estás autorizado a fotografiar, grabar, entrevistar ni registrar de forma audiovisual a personas menores de edad en nombre de Aquí Estamos.',

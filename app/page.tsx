@@ -107,13 +107,13 @@ export default function Home() {
 
       <hr className="divider" />
 
-      <h3>Política Temporal de Protección de Niños, Niñas y Adolescentes</h3>
+      <h3>Protección de Niños, Niñas y Adolescentes y de Personas Vulnerables</h3>
       <p>
-        Mientras desarrollamos nuestros protocolos especializados y formalizamos alianzas con
-        instituciones competentes, <strong>Aquí Estamos no realiza registros audiovisuales de
-        personas menores de edad</strong> (fotografías, videos, entrevistas o cualquier medio que
-        permita identificarlas). Durante esta fase, todas nuestras herramientas se orientan al apoyo
-        humanitario y logístico a las víctimas del terremoto del 24 de junio de 2026.
+        Nuestra plataforma está diseñada para <strong>evitar la exposición pública de las personas
+        registradas</strong>: no publica listados, fotografías, perfiles ni ubicaciones. Como medida
+        institucional vigente, <strong>Aquí Estamos no realiza registros audiovisuales de niños, niñas
+        y adolescentes</strong> hasta contar con protocolos especializados, asesoría jurídica y
+        acuerdos con las instituciones competentes.
       </p>
       <p>
         <Link className="btn" href="/proteccion-menores" role="button">
