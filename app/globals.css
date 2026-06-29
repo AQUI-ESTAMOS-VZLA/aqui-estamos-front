@@ -321,3 +321,52 @@ footer a { color: #0a0a0a; font-weight: 600; }
 .roster-card-name { font-weight: 600; line-height: 1.2; font-size: 1.02rem; margin-top: .15rem; }
 .roster-card .rollbtn { width: 100%; margin-top: .5rem; padding: .55rem; }
 .card-dot { position: absolute; top: .6rem; right: .6rem; }
+
+/* ============================================================
+   Long-form documents (policies, constitution, privacy).
+   Editorial prose — flowing text with clear section rhythm,
+   NOT a stack of bordered cards.
+   ============================================================ */
+.doc { --measure: 660px; max-width: var(--measure); }
+.doc > h2 { margin-bottom: 2.4rem; font-size: 1.05rem; font-weight: 500; }
+
+.doc section { margin: 0 0 1.9rem; }
+.doc section + section { padding-top: 1.9rem; border-top: 1px solid var(--border); }
+.doc h3 {
+  font-size: 1.12rem; font-weight: 700; letter-spacing: -.012em;
+  margin: 0 0 .55rem; color: var(--ink); display: block;
+}
+.doc h3 .num { color: var(--muted); font-weight: 600; margin-right: .15rem; }
+.doc p { color: #2b2b30; line-height: 1.75; margin: 0 0 .9rem; font-size: 1.01rem; }
+.doc p:last-child { margin-bottom: 0; }
+.doc ul { padding-left: 1.15rem; margin: .3rem 0 0; }
+.doc ul li { margin-bottom: .5rem; line-height: 1.6; color: #2b2b30; }
+.doc a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+
+/* Highlighted note at the top of a document */
+.callout {
+  border-left: 3px solid var(--ink);
+  background: #fafafa;
+  padding: 1rem 1.2rem;
+  border-radius: 0 12px 12px 0;
+  margin: 0 0 2.2rem;
+  color: #2b2b30; line-height: 1.68; font-size: 1.01rem;
+}
+.callout strong { color: var(--ink); }
+
+/* Closing principle line, refined to match the callout aesthetic */
+.doc .lead-rule, .lead-rule {
+  border-left: 3px solid var(--ve-blue);
+  background: #f8faff;
+  padding: 1rem 1.2rem; border-radius: 0 12px 12px 0;
+  margin: 2.4rem 0 0; line-height: 1.68; color: #2b2b30;
+}
+
+/* Document tables (e.g. version control / privacy summary) sit inline,
+   no longer trapped inside a card */
+.doc .pubpriv { margin: .4rem 0 0; }
+
+@media (max-width: 480px) {
+  .doc section + section { padding-top: 1.5rem; }
+  .doc p, .callout, .doc ul li { font-size: 1rem; }
+}

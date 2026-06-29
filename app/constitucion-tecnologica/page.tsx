@@ -8,51 +8,44 @@ export const metadata = {
 
 export default function ConstitucionTecnologica() {
   return (
-    <main className="wrap">
+    <main className="wrap doc">
       <div className="topbar">
         <Link href="/">&larr; Inicio</Link>
       </div>
-      <img
-        className="hero-img"
-        src="/assets/images/image01.jpg"
-        alt="Aqui Estamos Venezuela"
-      />
       <h1>Constitución Tecnológica de Aquí Estamos</h1>
       <h2>Versión 1.0 · Documento Fundacional</h2>
 
-      <div className="alert info" role="note">
-        <strong>Preámbulo.</strong> La tecnología no es el objeto de este
-        documento; las personas lo son. Aquí Estamos{" "}
+      <div className="callout" role="note">
+        <strong>Preámbulo.</strong> La tecnología no es el objeto de este documento; las personas lo
+        son. Aquí Estamos{" "}
         <strong>
-          desarrolla tecnología únicamente como un medio para proteger la
-          dignidad, la privacidad y el derecho
+          desarrolla tecnología únicamente como un medio para proteger la dignidad, la privacidad y el
+          derecho
         </strong>{" "}
-        de las personas a ser localizadas sin quedar expuestas durante una
-        emergencia.
+        de las personas a ser localizadas sin quedar expuestas durante una emergencia.
       </div>
 
-      <div className="panel">
-        <h3 className="section-title">1. Declaración de intención</h3>
+      <section>
+        <h3><span className="num">1.</span> Declaración de intención</h3>
         <p>
-          Aquí Estamos impulsa una infraestructura digital humanitaria para
-          apoyar a instituciones competentes en la localización, identificación
-          y reunificación de personas afectadas por emergencias, bajo un modelo
-          de protección de datos, derechos humanos y seguridad por diseño.
+          Aquí Estamos impulsa una infraestructura digital humanitaria para apoyar a instituciones
+          competentes en la localización, identificación y reunificación de personas afectadas por
+          emergencias, bajo un modelo de protección de datos, derechos humanos y seguridad por diseño.
         </p>
-      </div>
+      </section>
 
-      <div className="panel">
-        <h3 className="section-title">2. Misión tecnológica</h3>
+      <section>
+        <h3><span className="num">2.</span> Misión tecnológica</h3>
         <p>
-          Diseñar una infraestructura humanitaria digital que facilite procesos
-          seguros de identificación, reunificación y coordinación institucional,
-          minimizando la exposición pública de las personas afectadas.
+          Diseñar una infraestructura humanitaria digital que facilite procesos seguros de
+          identificación, reunificación y coordinación institucional, minimizando la exposición pública
+          de las personas afectadas.
         </p>
-      </div>
+      </section>
 
-      <div className="panel">
-        <h3 className="section-title">3. Principios fundamentales</h3>
-        <ul className="steps">
+      <section>
+        <h3><span className="num">3.</span> Principios fundamentales</h3>
+        <ul>
           <li>La persona como centro del sistema.</li>
           <li>Principio de No Exposición.</li>
           <li>Principio de Custodia Responsable.</li>
@@ -64,88 +57,77 @@ export default function ConstitucionTecnologica() {
           <li>Resiliencia ante incidentes.</li>
           <li>Supervisión humana en decisiones críticas.</li>
           <li>
-            Protección reforzada de niños, niñas, adolescentes y demás personas
-            en situación de vulnerabilidad.
+            Protección reforzada de niños, niñas, adolescentes y demás personas en situación de
+            vulnerabilidad.
           </li>
         </ul>
-      </div>
+      </section>
 
-      <div className="panel">
-        <h3 className="section-title">4. Derechos de las personas</h3>
+      <section>
+        <h3><span className="num">4.</span> Derechos de las personas</h3>
         <p>
-          El diseño del sistema buscará respetar el derecho a la dignidad, la
-          privacidad, la identidad, la protección de datos, la no discriminación
-          y el acceso a procedimientos seguros de verificación conforme al marco
-          jurídico aplicable.
+          El diseño del sistema buscará respetar el derecho a la dignidad, la privacidad, la identidad,
+          la protección de datos, la no discriminación y el acceso a procedimientos seguros de
+          verificación conforme al marco jurídico aplicable.
         </p>
-      </div>
+      </section>
 
-      <div className="panel">
-        <h3 className="section-title">5. Compromisos institucionales</h3>
+      <section>
+        <h3><span className="num">5.</span> Compromisos institucionales</h3>
         <p>
-          Aquí Estamos diseñará sus procesos para reducir riesgos, documentar
-          decisiones técnicas relevantes, revisar periódicamente sus controles
-          de seguridad y mantener una mejora continua basada en evidencia y
-          asesoría especializada.
+          Aquí Estamos diseñará sus procesos para reducir riesgos, documentar decisiones técnicas
+          relevantes, revisar periódicamente sus controles de seguridad y mantener una mejora continua
+          basada en evidencia y asesoría especializada.
         </p>
-      </div>
+      </section>
 
-      <div className="panel">
-        <h3 className="section-title">6. Tecnología humanitaria responsable</h3>
+      <section>
+        <h3><span className="num">6.</span> Tecnología humanitaria responsable</h3>
         <p>
-          No toda funcionalidad técnicamente posible debe implementarse. Toda
-          nueva capacidad será evaluada considerando su impacto en los derechos
-          de las personas, los riesgos de seguridad y la proporcionalidad de su
-          uso.
+          No toda funcionalidad técnicamente posible debe implementarse. Toda nueva capacidad será
+          evaluada considerando su impacto en los derechos de las personas, los riesgos de seguridad y
+          la proporcionalidad de su uso.
         </p>
-      </div>
+      </section>
 
-      <div className="panel">
-        <h3 className="section-title">7. Gobernanza tecnológica</h3>
+      <section>
+        <h3><span className="num">7.</span> Gobernanza tecnológica</h3>
         <p>
-          La evolución del sistema contará con asesoría multidisciplinaria en
-          protección de datos, ciberseguridad, derecho, respuesta humanitaria y
-          ética tecnológica. Las decisiones estratégicas procurarán ser
-          transparentes y documentadas.
+          La evolución del sistema contará con asesoría multidisciplinaria en protección de datos,
+          ciberseguridad, derecho, respuesta humanitaria y ética tecnológica. Las decisiones
+          estratégicas procurarán ser transparentes y documentadas.
         </p>
-      </div>
+      </section>
 
-      <div className="panel">
-        <h3 className="section-title">
-          8. Propiedad intelectual con propósito humanitario
-        </h3>
+      <section>
+        <h3><span className="num">8.</span> Propiedad intelectual con propósito humanitario</h3>
         <p>
-          La propiedad intelectual permanecerá en sus autores para preservar la
-          integridad, seguridad y evolución del sistema. La intención es
-          facilitar su utilización mediante licencias gratuitas o convenios de
-          interés público para instituciones humanitarias, sin fines de lucro.
+          La propiedad intelectual permanecerá en sus autores para preservar la integridad, seguridad y
+          evolución del sistema. La intención es facilitar su utilización mediante licencias gratuitas o
+          convenios de interés público para instituciones humanitarias, sin fines de lucro.
         </p>
-      </div>
+      </section>
 
-      <div className="panel">
-        <h3 className="section-title">9. Invitación a la cooperación</h3>
+      <section>
+        <h3><span className="num">9.</span> Invitación a la cooperación</h3>
         <p>
-          Aquí Estamos invita a especialistas, universidades, organismos
-          internacionales, organizaciones humanitarias y autoridades competentes
-          a revisar, cuestionar y fortalecer continuamente esta Constitución
-          Tecnológica.
+          Aquí Estamos invita a especialistas, universidades, organismos internacionales,
+          organizaciones humanitarias y autoridades competentes a revisar, cuestionar y fortalecer
+          continuamente esta Constitución Tecnológica.
         </p>
-      </div>
+      </section>
 
       <p className="lead-rule">
-        <strong>Declaración final:</strong> no aspiramos a desarrollar el
-        sistema más grande, sino el más responsable posible. Creemos que una
-        persona puede ser localizada sin convertir su identidad en información
-        pública y que la confianza se construye mediante transparencia, mejora
+        <strong>Declaración final:</strong> no aspiramos a desarrollar el sistema más grande, sino el
+        más responsable posible. Creemos que una persona puede ser localizada sin convertir su
+        identidad en información pública y que la confianza se construye mediante transparencia, mejora
         continua y protección efectiva de los derechos humanos.
       </p>
 
       <footer>
         <Link href="/">Volver al inicio</Link>
         &nbsp;·&nbsp;
-        <Link href="/proteccion-menores">
-          Protección de Niños, Niñas y Adolescentes
-        </Link>
+        <Link href="/proteccion-menores">Protección de Niños, Niñas y Adolescentes</Link>
         &nbsp;·&nbsp;
         <Link href="/privacidad">Política de Búsqueda y Privacidad</Link>
       </footer>

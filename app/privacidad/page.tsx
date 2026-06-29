@@ -8,17 +8,16 @@ export const metadata = {
 
 export default function Privacidad() {
   return (
-    <main className="wrap">
+    <main className="wrap doc">
       <div className="topbar">
         <Link href="/">&larr; Inicio</Link>
       </div>
-      <img className="hero-img" src="/assets/images/image01.jpg" alt="Aqui Estamos Venezuela" />
       <h1>Política de Búsqueda y Privacidad</h1>
       <h2>Cómo protegemos la información de las personas registradas.</h2>
 
-      <div className="panel">
-        <h3 className="section-title">¿Qué información es pública?</h3>
-        <ul className="steps">
+      <section>
+        <h3>¿Qué información es pública?</h3>
+        <ul>
           <li>Nombre y apellido.</li>
           <li>Fotografía principal.</li>
           <li>Edad aproximada (opcional).</li>
@@ -30,11 +29,11 @@ export default function Privacidad() {
           </li>
           <li>Número único del registro.</li>
         </ul>
-      </div>
+      </section>
 
-      <div className="panel">
-        <h3 className="section-title">¿Qué información es privada?</h3>
-        <ul className="steps">
+      <section>
+        <h3>¿Qué información es privada?</h3>
+        <ul>
           <li>Dirección exacta.</li>
           <li>Coordenadas GPS.</li>
           <li>Hospital o refugio específico.</li>
@@ -45,36 +44,36 @@ export default function Privacidad() {
           <li>Datos del voluntario.</li>
           <li>Videos originales y observaciones internas.</li>
         </ul>
-      </div>
+      </section>
 
-      <div className="panel">
-        <h3 className="section-title">¿Qué se puede buscar?</h3>
+      <section>
+        <h3>¿Qué se puede buscar?</h3>
         <p>
           La búsqueda pública permite consultar por nombre, apellido, nombre completo, fotografía (en
           una etapa futura mediante reconocimiento facial) o número de registro. El sistema únicamente
           confirma la existencia del registro.
         </p>
-      </div>
+      </section>
 
-      <div className="panel">
-        <h3 className="section-title">¿Cómo se localiza a una persona?</h3>
+      <section>
+        <h3>¿Cómo se localiza a una persona?</h3>
         <p>
           El sistema confirma que existe un registro y ofrece la opción de solicitar contacto. Un
           operador verifica el parentesco o la identidad antes de compartir información sensible o
           coordinar un encuentro.
         </p>
-      </div>
+      </section>
 
-      <div className="panel">
-        <h3 className="section-title">Protección especial para niños</h3>
+      <section>
+        <h3>Protección especial para niños</h3>
         <p>
           Nunca se publica la ubicación, el colegio, el nombre del cuidador ni otra información que
           permita localizar al menor. Toda reunificación requiere verificación de identidad.
         </p>
-      </div>
+      </section>
 
-      <div className="panel">
-        <h3 className="section-title">Resumen</h3>
+      <section>
+        <h3>Resumen</h3>
         <table className="pubpriv">
           <thead>
             <tr>
@@ -84,100 +83,22 @@ export default function Privacidad() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Nombre</td>
-              <td className="c">
-                <span className="yes">✓</span>
-              </td>
-              <td className="c"></td>
-            </tr>
-            <tr>
-              <td>Fotografía principal</td>
-              <td className="c">
-                <span className="yes">✓</span>
-              </td>
-              <td className="c"></td>
-            </tr>
-            <tr>
-              <td>Ciudad / Municipio</td>
-              <td className="c">
-                <span className="yes">✓</span>
-              </td>
-              <td className="c"></td>
-            </tr>
-            <tr>
-              <td>Fecha del registro</td>
-              <td className="c">
-                <span className="yes">✓</span>
-              </td>
-              <td className="c"></td>
-            </tr>
-            <tr>
-              <td>Estado</td>
-              <td className="c">
-                <span className="yes">✓</span>
-              </td>
-              <td className="c"></td>
-            </tr>
-            <tr>
-              <td>Dirección exacta</td>
-              <td className="c"></td>
-              <td className="c">
-                <span className="yes">✓</span>
-              </td>
-            </tr>
-            <tr>
-              <td>Hospital o refugio específico</td>
-              <td className="c"></td>
-              <td className="c">
-                <span className="yes">✓</span>
-              </td>
-            </tr>
-            <tr>
-              <td>Teléfono</td>
-              <td className="c"></td>
-              <td className="c">
-                <span className="yes">✓</span>
-              </td>
-            </tr>
-            <tr>
-              <td>Datos médicos</td>
-              <td className="c"></td>
-              <td className="c">
-                <span className="yes">✓</span>
-              </td>
-            </tr>
-            <tr>
-              <td>Familiares</td>
-              <td className="c"></td>
-              <td className="c">
-                <span className="yes">✓</span>
-              </td>
-            </tr>
-            <tr>
-              <td>Video original</td>
-              <td className="c"></td>
-              <td className="c">
-                <span className="yes">✓</span>
-              </td>
-            </tr>
-            <tr>
-              <td>Coordenadas GPS</td>
-              <td className="c"></td>
-              <td className="c">
-                <span className="yes">✓</span>
-              </td>
-            </tr>
-            <tr>
-              <td>Observaciones del voluntario</td>
-              <td className="c"></td>
-              <td className="c">
-                <span className="yes">✓</span>
-              </td>
-            </tr>
+            <tr><td>Nombre</td><td className="c"><span className="yes">✓</span></td><td className="c"></td></tr>
+            <tr><td>Fotografía principal</td><td className="c"><span className="yes">✓</span></td><td className="c"></td></tr>
+            <tr><td>Ciudad / Municipio</td><td className="c"><span className="yes">✓</span></td><td className="c"></td></tr>
+            <tr><td>Fecha del registro</td><td className="c"><span className="yes">✓</span></td><td className="c"></td></tr>
+            <tr><td>Estado</td><td className="c"><span className="yes">✓</span></td><td className="c"></td></tr>
+            <tr><td>Dirección exacta</td><td className="c"></td><td className="c"><span className="yes">✓</span></td></tr>
+            <tr><td>Hospital o refugio específico</td><td className="c"></td><td className="c"><span className="yes">✓</span></td></tr>
+            <tr><td>Teléfono</td><td className="c"></td><td className="c"><span className="yes">✓</span></td></tr>
+            <tr><td>Datos médicos</td><td className="c"></td><td className="c"><span className="yes">✓</span></td></tr>
+            <tr><td>Familiares</td><td className="c"></td><td className="c"><span className="yes">✓</span></td></tr>
+            <tr><td>Video original</td><td className="c"></td><td className="c"><span className="yes">✓</span></td></tr>
+            <tr><td>Coordenadas GPS</td><td className="c"></td><td className="c"><span className="yes">✓</span></td></tr>
+            <tr><td>Observaciones del voluntario</td><td className="c"></td><td className="c"><span className="yes">✓</span></td></tr>
           </tbody>
         </table>
-      </div>
+      </section>
 
       <p className="lead-rule">
         <strong>Principio rector:</strong> El objetivo del sistema no es revelar dónde está una
@@ -187,6 +108,8 @@ export default function Privacidad() {
 
       <footer>
         <Link href="/">Volver al inicio</Link>
+        &nbsp;·&nbsp;
+        <Link href="/proteccion-menores">Protección de Niños, Niñas y Adolescentes</Link>
       </footer>
     </main>
   );
