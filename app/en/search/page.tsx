@@ -6,7 +6,7 @@ export default function SearchEn() {
     <main className="wrap">
       <div className="lang-switch">
         <Link href="/busqueda" hrefLang="es">
-          Español
+          Traducir a español
         </Link>
       </div>
       <div className="topbar">

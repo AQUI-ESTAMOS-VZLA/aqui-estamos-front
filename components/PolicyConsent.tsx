@@ -13,7 +13,7 @@ const STRINGS = {
     read: (t: string) => `Leer la ${t}.`,
     mustAccept: 'Debes aceptar la política para continuar.',
     backHome: 'Volver al inicio',
-    switchLabel: 'English',
+    switchLabel: 'Translate to English',
     homeHref: '/',
   },
   en: {
@@ -22,7 +22,7 @@ const STRINGS = {
     read: (t: string) => `Read the ${t}.`,
     mustAccept: 'You must accept the policy to continue.',
     backHome: 'Back to home',
-    switchLabel: 'Español',
+    switchLabel: 'Traducir a español',
     homeHref: '/en',
   },
 };

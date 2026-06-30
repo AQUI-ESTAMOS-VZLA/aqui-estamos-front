@@ -84,7 +84,7 @@ export default function Verificar() {
     <main className="wrap">
       <div className="lang-switch">
         <Link href="/en/verify" hrefLang="en">
-          English
+          Translate to English
         </Link>
       </div>
       <div className="topbar">
