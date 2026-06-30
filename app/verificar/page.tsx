@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { getConfig } from '@/lib/config';
 import { Alert, Spinner, Row } from '@/components/ui';
+import { isActiveToday } from '@/lib/jornada';
 import type { Volunteer } from '@/lib/types';
 
 type Result =
@@ -56,11 +57,14 @@ export default function Verificar() {
       const r = await fetch(url, { headers: { Accept: 'application/json' } });
       if (!r.ok) throw new Error('HTTP ' + r.status);
       const data: { results?: Volunteer[] } = await r.json();
-      const volunteers = data.results || [];
+      // Only volunteers active in today's jornada can be verified.
+      const volunteers = (data.results || []).filter((v) =>
+        isActiveToday(v.role, v.last_active_at),
+      );
       if (volunteers.length === 0) {
         setResult({
           kind: 'error',
-          message: `No se encontró ningún voluntario para “${value}”.`,
+          message: `No hay ningún voluntario activo hoy con esos datos (“${value}”).`,
         });
         return;
       }
