@@ -123,9 +123,9 @@ export default function ChildProtectionEn() {
       <section>
         <h3><span className="num">9.</span> Final statement</h3>
         <p>
-          The best sensitive information is that which never needs to be made
-          public in order to fulfill its humanitarian purpose. That principle
-          guides the technological and operational development of Aquí Estamos.
+          The safest information is that which never needs to be made public in
+          order to fulfill its humanitarian purpose. That principle guides the
+          technological and operational development of Aquí Estamos.
         </p>
       </section>
 
@@ -138,11 +138,101 @@ export default function ChildProtectionEn() {
         </p>
       </section>
 
-      <p className="lead-rule">
-        <strong>Guiding principle:</strong> the best sensitive information is
-        that which never needs to be made public in order to fulfill its
-        humanitarian purpose.
-      </p>
+      <hr className="divider" />
+
+      <section>
+        <h3>🛡️ Rules for Volunteers in Shelters</h3>
+        <p>
+          Aquí Estamos · Protection of children, adolescents and vulnerable
+          people. Read this before every shift. If you have any doubt, ask
+          coordination <strong>before</strong> acting.
+        </p>
+      </section>
+
+      <section>
+        <h3><span className="num">1.</span> What is NEVER done</h3>
+        <ul>
+          <li>❌ Do not take photos or videos of minors — not for internal use, not “just for the group”.</li>
+          <li>❌ Do not write children's names or any identifying details on WhatsApp, social media or chats.</li>
+          <li>
+            ❌ Do not publish lists of victims, photos, profiles, locations or any data of a registered
+            person.
+          </li>
+          <li>❌ Do not share the locations of shelters where there are minors.</li>
+          <li>❌ Do not promise a family anything you cannot deliver (reunions, transfers, aid).</li>
+          <li>❌ Do not share the team's passwords or access with anyone outside coordination.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3><span className="num">2.</span> What you SHOULD do</h3>
+        <ul>
+          <li>✅ Arrive in groups of 3 and identify yourselves to the shelter's person in charge.</li>
+          <li>✅ Ask the institution / person in charge for permission before recording any data.</li>
+          <li>✅ Collect only the information strictly necessary for the humanitarian purpose.</li>
+          <li>
+            ✅ Record data only through the project's secure channel (the system / authorized
+            spreadsheet), never through loose chats or personal notes.
+          </li>
+          <li>✅ Explain to each adult, respectfully, why their data is being collected and ask for their consent.</li>
+          <li>✅ Treat every person with dignity and privacy: do not expose their situation.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3><span className="num">3.</span> If you find an unaccompanied minor</h3>
+        <ul>
+          <li>Do not take them with you and do not leave them alone.</li>
+          <li>Immediately notify the shelter's person in charge and the competent institution present.</li>
+          <li>Do not publish their photo, name or location in any chat or network.</li>
+          <li>Report the situation to coordination (see below).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3><span className="num">4.</span> The principle that guides everything</h3>
+        <p>
+          The best sensitive information is that which never needs to be made public in order to
+          fulfill its humanitarian purpose.
+        </p>
+        <p>If you are unsure whether to record something or not: do not record it and consult coordination.</p>
+      </section>
+
+      <section>
+        <h3>🚨 Incident reporting</h3>
+        <p>
+          Report immediately if any of these things happen — do not wait, do not handle it alone, do
+          not delete anything:
+        </p>
+        <ul>
+          <li>A photo, name or piece of data of a minor or a registered person was published by mistake.</li>
+          <li>Sensitive information was leaked or lost.</li>
+          <li>Someone misused a team access or password.</li>
+          <li>You detected a risk situation for a minor or vulnerable person.</li>
+          <li>An external page or person asks for data in a suspicious way (possible fraud).</li>
+        </ul>
+        <p>
+          <strong>How to report:</strong>
+        </p>
+        <ul>
+          <li>Incident contact: [name of the person in charge] · [phone / email].</li>
+          <li>
+            Team email:{' '}
+            <a href="mailto:aquiestamos.emergencia.venezuela@gmail.com">
+              aquiestamos.emergencia.venezuela@gmail.com
+            </a>
+            .
+          </li>
+          <li>
+            What to include: what happened?, when?, where? and who does it affect? Without forwarding
+            the sensitive data.
+          </li>
+        </ul>
+        <p className="callout">
+          Reporting on time protects people and the project. Reporting never causes problems; staying
+          silent does.
+        </p>
+      </section>
 
       <footer>
         <Link href="/en">Back to home</Link>
