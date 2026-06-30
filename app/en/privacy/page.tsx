@@ -11,7 +11,7 @@ export default function PrivacyEn() {
     <main className="wrap doc">
       <div className="lang-switch">
         <Link href="/privacidad" hrefLang="es">
-          Español
+          Traducir a español
         </Link>
       </div>
       <div className="topbar">

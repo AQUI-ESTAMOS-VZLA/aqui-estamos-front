@@ -84,7 +84,7 @@ export default function VerifyEn() {
     <main className="wrap">
       <div className="lang-switch">
         <Link href="/verificar" hrefLang="es">
-          Español
+          Traducir a español
         </Link>
       </div>
       <div className="topbar">

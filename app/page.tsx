@@ -13,7 +13,7 @@ export default function Home() {
     <main className="wrap">
       <div className="lang-switch">
         <Link href="/en" hrefLang="en">
-          English
+          Translate to English
         </Link>
       </div>
       <img
