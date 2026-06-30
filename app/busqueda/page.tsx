@@ -6,7 +6,7 @@ export default function Busqueda() {
     <main className="wrap">
       <div className="lang-switch">
         <Link href="/en/search" hrefLang="en">
-          English
+          Translate to English
         </Link>
       </div>
       <div className="topbar">

@@ -16,7 +16,7 @@ export default function HomeEn() {
     <main className="wrap">
       <div className="lang-switch">
         <Link href="/" hrefLang="es">
-          Español
+          Traducir a español
         </Link>
       </div>
 

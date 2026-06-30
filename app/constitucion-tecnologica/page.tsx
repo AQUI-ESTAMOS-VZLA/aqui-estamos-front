@@ -11,7 +11,7 @@ export default function ConstitucionTecnologica() {
     <main className="wrap doc">
       <div className="lang-switch">
         <Link href="/en/technological-constitution" hrefLang="en">
-          English
+          Translate to English
         </Link>
       </div>
       <div className="topbar">

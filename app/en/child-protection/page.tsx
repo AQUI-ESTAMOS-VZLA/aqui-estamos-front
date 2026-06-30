@@ -12,7 +12,7 @@ export default function ChildProtectionEn() {
     <main className="wrap doc">
       <div className="lang-switch">
         <Link href="/proteccion-menores" hrefLang="es">
-          Español
+          Traducir a español
         </Link>
       </div>
       <div className="topbar">
