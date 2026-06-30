@@ -80,6 +80,91 @@ ul.steps li, ol.steps li { margin-bottom: .5rem; }
 .lang-switch a:hover { background: #0a0a0a; color: #fff; border-color: #0a0a0a; }
 
 .divider { border: 0; border-top: 1px solid var(--border); margin: 2.25rem 0; }
+
+/* ============================================================
+   Colaboradores directory (app/colaboradores)
+   ============================================================ */
+.dir-wrap { max-width: 880px; }
+
+.dir-search { position: relative; margin: 0 0 1.5rem; }
+.dir-search svg {
+  position: absolute; left: .85rem; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px; fill: var(--muted); pointer-events: none;
+}
+.dir-search input {
+  width: 100%; padding: .8rem .9rem .8rem 2.5rem;
+  border: 1.5px solid var(--border); border-radius: 11px;
+  font-size: 1rem; font-family: inherit; background: #fff; color: var(--ink);
+  transition: border-color .12s ease, box-shadow .12s ease;
+}
+.dir-search input:focus {
+  outline: none; border-color: var(--ring);
+  box-shadow: 0 0 0 3px rgba(24,24,27,.12);
+}
+
+.dir-empty { text-align: center; color: var(--muted); padding: 3.5rem 1rem; }
+
+.dir-grid { list-style: none; margin: 0; padding: 0; }
+.dir-grid > li { display: flex; }
+.dir-grid .roster-card {
+  width: 100%; cursor: pointer; font-family: inherit; text-align: center;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .04s ease;
+}
+.dir-grid .roster-card:hover { box-shadow: var(--shadow); border-color: var(--border-strong); }
+.dir-grid .roster-card:active { transform: translateY(1px); }
+.dir-grid .roster-card-name { margin-top: .35rem; }
+
+.dir-avatar-fallback {
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 2rem; color: var(--muted); background: #f3f4f6;
+}
+
+/* Active-in-jornada pulsing dot */
+.dir-dot { position: relative; display: inline-flex; width: 12px; height: 12px; }
+.dir-dot.small { width: 10px; height: 10px; }
+.dir-dot-ping {
+  position: absolute; inset: 0; border-radius: 50%; background: #16a34a;
+  opacity: .75; animation: dir-ping 1.2s cubic-bezier(0,0,.2,1) infinite;
+}
+.dir-dot-core {
+  position: relative; display: inline-flex; width: 100%; height: 100%;
+  border-radius: 50%; background: #16a34a; box-shadow: 0 0 6px 1px rgba(34,197,94,.7);
+}
+@keyframes dir-ping { 75%, 100% { transform: scale(2); opacity: 0; } }
+
+/* Detail modal */
+.dir-modal-overlay {
+  position: fixed; inset: 0; z-index: 60;
+  background: rgba(10,10,10,.55); backdrop-filter: blur(2px);
+  display: flex; align-items: center; justify-content: center; padding: 1.25rem;
+  animation: dir-fade .15s ease;
+}
+.dir-modal {
+  position: relative; width: 100%; max-width: 440px;
+  background: #fff; border-radius: 18px; box-shadow: var(--shadow);
+  padding: 1.5rem 1.4rem 1.6rem; max-height: 90vh; overflow: auto;
+  display: flex; flex-direction: column; align-items: center;
+  animation: dir-pop .16s ease;
+}
+.dir-modal-close {
+  position: absolute; top: .65rem; right: .65rem;
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid var(--border); background: #fff; color: var(--muted);
+  font-size: 1rem; cursor: pointer; line-height: 1;
+}
+.dir-modal-close:hover { background: #f4f4f5; color: var(--ink); }
+.dir-modal-photo {
+  width: 100%; max-height: 60vh; object-fit: contain;
+  border-radius: 14px; background: #f3f4f6; border: 1px solid var(--border);
+}
+.dir-modal .dir-avatar-fallback { min-height: 220px; font-size: 4rem; }
+.dir-active-pill {
+  margin-top: .9rem; display: inline-flex; align-items: center; gap: .5rem;
+  padding: .35rem .8rem; border-radius: 999px; font-size: .82rem; font-weight: 600;
+  color: #067647; background: var(--ok-bg); border: 1px solid var(--ok-bd);
+}
+@keyframes dir-fade { from { opacity: 0; } }
+@keyframes dir-pop { from { opacity: 0; transform: translateY(8px) scale(.98); } }
 .center { text-align: center; }
 .muted { color: var(--muted); }
 .small { font-size: .9rem; }
