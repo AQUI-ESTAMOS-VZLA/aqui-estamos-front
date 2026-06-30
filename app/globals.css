@@ -132,11 +132,22 @@ form { margin: 1.25rem 0; }
   font-size: 1rem; font-family: inherit; background: #fff; color: var(--ink);
   transition: border-color .12s ease, box-shadow .12s ease;
 }
-.field input:focus, .field select:focus {
+.field input[type="number"],
+.field input[type="date"],
+.field input[type="tel"],
+.field input[type="url"],
+.field textarea {
+  width: 100%; padding: .8rem .9rem;
+  border: 1.5px solid var(--border); border-radius: 11px;
+  font-size: 1rem; font-family: inherit; background: #fff; color: var(--ink);
+  transition: border-color .12s ease, box-shadow .12s ease;
+}
+.field textarea { resize: vertical; min-height: 76px; line-height: 1.5; }
+.field input:focus, .field select:focus, .field textarea:focus {
   outline: none; border-color: var(--ring);
   box-shadow: 0 0 0 3px rgba(24,24,27,.12);
 }
-.field input::placeholder { color: #9ca3af; }
+.field input::placeholder, .field textarea::placeholder { color: #9ca3af; }
 
 /* File input + photo preview */
 .file-row { display: flex; align-items: center; gap: .9rem; }
