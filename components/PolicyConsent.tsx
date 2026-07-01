@@ -3,37 +3,36 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { getConfig, AeConfig } from '@/lib/config';
 import { CHILD_POLICY, CHILD_POLICY_EN } from '@/lib/policy';
+import { SiteHeader } from '@/components/SiteHeader';
+import { SiteFooter } from '@/components/SiteFooter';
 
 type FormKey = Extract<keyof AeConfig, 'ayudarFormUrl' | 'registroFormUrl'>;
 
 const STRINGS = {
   es: {
-    back: '← Inicio',
     noticeLabel: 'Aviso importante.',
     read: (t: string) => `Leer la ${t}.`,
     mustAccept: 'Debes aceptar la política para continuar.',
-    backHome: 'Volver al inicio',
     switchLabel: 'Translate to English',
     homeHref: '/',
+    eyebrowRecord: 'Registro',
+    eyebrowVolunteer: 'Voluntariado',
   },
   en: {
-    back: '← Home',
     noticeLabel: 'Important notice.',
     read: (t: string) => `Read the ${t}.`,
     mustAccept: 'You must accept the policy to continue.',
-    backHome: 'Back to home',
     switchLabel: 'Traducir a español',
     homeHref: '/en',
+    eyebrowRecord: 'Record',
+    eyebrowVolunteer: 'Volunteering',
   },
 };
 
 /**
- * Consent interstitial shown before an external Google Form (volunteer sign-up
- * or registro upload). Enforces the child-protection notice + a mandatory
- * acceptance checkbox before letting the user continue to the form.
- *
- * `lang` defaults to 'es' so existing Spanish pages are unchanged. Pass `lang="en"`
- * (and `switchHref` to the Spanish counterpart) for the /en pages.
+ * Consent interstitial before an external Google Form (volunteer sign-up or
+ * registro upload). Enforces the child-protection notice + a mandatory
+ * acceptance checkbox. Styled to match the landing redesign.
  */
 export function PolicyConsent({
   title,
@@ -61,63 +60,66 @@ export function PolicyConsent({
   const isEn = lang === 'en';
   const t = isEn ? STRINGS.en : STRINGS.es;
   const policy = isEn ? CHILD_POLICY_EN : CHILD_POLICY;
+  const eyebrow = formKey === 'registroFormUrl' ? t.eyebrowRecord : t.eyebrowVolunteer;
 
   return (
-    <main className="wrap">
-      {switchHref && (
-        <div className="lang-switch">
-          <Link href={switchHref} hrefLang={isEn ? 'es' : 'en'}>
-            {t.switchLabel}
-          </Link>
+    <main className="pg">
+      <SiteHeader
+        homeHref={t.homeHref}
+        switchHref={switchHref || t.homeHref}
+        switchLabel={t.switchLabel}
+        lang={lang}
+      />
+
+      <div className="pg-main lp-inner">
+        <div className="pg-hero">
+          <p className="pg-eyebrow">{eyebrow}</p>
+          <h1 className="pg-title">{title}</h1>
+          <p className="pg-lead">{subtitle}</p>
         </div>
-      )}
-      <div className="topbar">
-        <Link href={t.homeHref}>{t.back}</Link>
+
+        <div className="pg-body" style={{ maxWidth: 660 }}>
+          <div className="alert info" role="note">
+            <strong>{t.noticeLabel}</strong> {policy.notice}
+            {extraNote ? ' ' + extraNote : ''}
+          </div>
+
+          <div className="panel">
+            <label
+              className="field"
+              style={{ display: 'flex', gap: '.7rem', alignItems: 'flex-start' }}
+            >
+              <input
+                type="checkbox"
+                checked={accepted}
+                onChange={(e) => setAccepted(e.target.checked)}
+                style={{ width: 'auto', marginTop: '.25rem' }}
+              />
+              <span>
+                {policy.acceptanceText}{' '}
+                <Link href={policy.path}>{t.read(policy.title)}</Link>
+              </span>
+            </label>
+
+            {accepted && formUrl ? (
+              <a className="pg-btn" href={formUrl} target="_blank" rel="noopener noreferrer">
+                {continueLabel}
+              </a>
+            ) : (
+              <button className="pg-btn" type="button" disabled aria-disabled="true">
+                {continueLabel}
+              </button>
+            )}
+            {!accepted && (
+              <p className="muted small" style={{ margin: '.85rem 0 0' }}>
+                {t.mustAccept}
+              </p>
+            )}
+          </div>
+        </div>
       </div>
-      <img className="hero-img" src="/assets/images/image01.jpg" alt="Aqui Estamos Venezuela" />
-      <h1>{title}</h1>
-      <h2>{subtitle}</h2>
 
-      <div className="alert info" role="note">
-        <strong>{t.noticeLabel}</strong> {policy.notice}
-        {extraNote ? ' ' + extraNote : ''}
-      </div>
-
-      <div className="panel">
-        <label className="field" style={{ display: 'flex', gap: '.7rem', alignItems: 'flex-start' }}>
-          <input
-            type="checkbox"
-            checked={accepted}
-            onChange={(e) => setAccepted(e.target.checked)}
-            style={{ width: 'auto', marginTop: '.25rem' }}
-          />
-          <span>
-            {policy.acceptanceText}{' '}
-            <Link href={policy.path}>{t.read(policy.title)}</Link>
-          </span>
-        </label>
-
-        {accepted && formUrl ? (
-          <a className="btn btn-primary" href={formUrl} target="_blank" rel="noopener noreferrer">
-            {continueLabel}
-          </a>
-        ) : (
-          <button className="btn btn-primary" type="button" disabled aria-disabled="true">
-            {continueLabel}
-          </button>
-        )}
-        {!accepted && (
-          <p className="muted small" style={{ margin: '.85rem 0 0' }}>
-            {t.mustAccept}
-          </p>
-        )}
-      </div>
-
-      <footer>
-        <Link href={t.homeHref}>{t.backHome}</Link>
-        &nbsp;·&nbsp;
-        <Link href={policy.path}>{policy.title}</Link>
-      </footer>
+      <SiteFooter lang={lang} />
     </main>
   );
 }

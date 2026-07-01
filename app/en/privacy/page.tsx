@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata = {
   title: "Search and Privacy Policy — Aqui Estamos Venezuela",
@@ -8,17 +9,15 @@ export const metadata = {
 
 export default function PrivacyEn() {
   return (
-    <main className="wrap doc">
-      <div className="lang-switch">
-        <Link href="/privacidad" hrefLang="es">
-          Traducir a español
-        </Link>
-      </div>
-      <div className="topbar">
-        <Link href="/en">&larr; Home</Link>
-      </div>
-      <h1>Search and Privacy Policy</h1>
-      <h2>How we protect the information of registered persons.</h2>
+    <main className="pg">
+      <SiteHeader homeHref="/en" switchHref="/privacidad" switchLabel="Traducir a español" lang="en" />
+      <div className="pg-main lp-inner">
+        <div className="pg-hero">
+          <p className="pg-eyebrow">Privacy</p>
+          <h1 className="pg-title">Search and Privacy Policy</h1>
+          <p className="pg-lead">How we protect the information of registered persons.</p>
+        </div>
+        <article className="doc pg-body">
 
       <section>
         <h3>What information is public?</h3>
@@ -118,11 +117,9 @@ export default function PrivacyEn() {
         process.
       </p>
 
-      <footer>
-        <Link href="/en">Back to home</Link>
-        &nbsp;·&nbsp;
-        <Link href="/en/child-protection">Child and Adolescent Protection</Link>
-      </footer>
+      </article>
+      </div>
+      <SiteFooter lang="en" />
     </main>
   );
 }

@@ -1,32 +1,21 @@
 import Link from "next/link";
-import React from "react";
 
-// Full-screen "coming soon" placeholder styled to match the landing redesign.
-// Used by the WIP search pages (/busqueda, /en/search).
-export function ComingSoon({
-  lang,
-  eyebrow,
-  title,
-  body,
+// Shared top bar for inner pages, matching the landing redesign: shield logo +
+// brand on the left, language toggle on the right, flag stripe underneath.
+export function SiteHeader({
   homeHref,
-  homeLabel,
   switchHref,
   switchLabel,
-  note,
+  lang,
 }: {
-  lang: "es" | "en";
-  eyebrow: string;
-  title: string;
-  body: string;
   homeHref: string;
-  homeLabel: string;
   switchHref?: string;
   switchLabel?: string;
-  note?: React.ReactNode;
+  lang: "es" | "en";
 }) {
   return (
-    <main className="wip">
-      <div className="wip-top lp-inner">
+    <header className="site-header">
+      <div className="site-header-inner lp-inner">
         <Link href={homeHref} className="lp-brand">
           <img src="/assets/figma/logo-shield.png" alt="" />
           <span>Aquí Estamos</span>
@@ -40,27 +29,11 @@ export function ComingSoon({
           </Link>
         )}
       </div>
-
-      <div className="wip-body lp-inner">
-        <span className="wip-badge" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 17a2 2 0 0 0 2-2 2 2 0 0 0-2-2 2 2 0 0 0-2 2 2 2 0 0 0 2 2zm6-9h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM8.9 6a3.1 3.1 0 0 1 6.2 0v2H8.9V6z" />
-          </svg>
-        </span>
-        <p className="lp-eyebrow lp-eyebrow-light">{eyebrow}</p>
-        <h1 className="wip-title">{title}</h1>
-        <p className="wip-sub">{body}</p>
-        <Link href={homeHref} className="wip-btn">
-          {homeLabel}
-        </Link>
-        {note && <div className="wip-note">{note}</div>}
-      </div>
-
       <div className="lp-stripe" aria-hidden="true">
         <span />
         <span />
         <span />
       </div>
-    </main>
+    </header>
   );
 }

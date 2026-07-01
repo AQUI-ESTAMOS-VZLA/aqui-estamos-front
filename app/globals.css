@@ -12,6 +12,8 @@
   --ve-yellow: #ffcc00;
   --ve-blue: #00247d;
   --ve-red: #cf142b;
+  --navy: #001d45;
+  --cream: #f7f2df;
   --ok-bg: #ecfdf3; --ok-fg: #067647; --ok-bd: #abefc6;
   --err-bg: #fef3f2; --err-fg: #b42318; --err-bd: #fecdca;
   --info-bg: #f4f4f5; --info-fg: #3f3f46;
@@ -697,3 +699,50 @@ footer a { color: #0a0a0a; font-weight: 600; }
   outline-offset: 3px;
   border-radius: 4px;
 }
+
+/* ============================================================
+   Shared inner-page shell (SiteHeader/SiteFooter) — redesign style
+   ============================================================ */
+.pg { min-height: 100svh; display: flex; flex-direction: column; background: #fff; color: var(--ink); }
+.pg-main { flex: 1 0 auto; width: 100%; }
+
+.site-header { background: #fff; }
+.site-header-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.1rem 0; padding-top: calc(1.1rem + 5px);
+}
+
+.pg-hero { padding: clamp(2.2rem, 5vw, 4.2rem) 0 clamp(1.3rem, 3vw, 2.2rem); }
+.pg-eyebrow {
+  font-size: .8rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--muted); font-weight: 600; margin: 0 0 .9rem;
+}
+.pg-title {
+  font-size: clamp(1.9rem, 4.6vw, 3.3rem); font-weight: 800; text-transform: uppercase;
+  letter-spacing: -.02em; line-height: 1.05; margin: 0; color: var(--ink);
+}
+.pg-lead { color: var(--muted); font-size: 1.05rem; line-height: 1.5; max-width: 62ch; margin: 1rem 0 0; }
+.pg-body { padding-bottom: clamp(3rem, 6vw, 5rem); }
+
+/* Primary pill button (navy) matching the landing action style */
+.pg-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+  background: var(--navy); color: #fff; text-decoration: none;
+  padding: .9rem 1.6rem; border-radius: 999px; border: 1.5px solid var(--navy);
+  font-weight: 700; text-transform: uppercase; letter-spacing: .03em; font-size: .95rem;
+  font-family: inherit; cursor: pointer;
+  transition: transform .1s ease, box-shadow .2s ease, opacity .15s, background .15s;
+}
+.pg-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(0,0,0,.18); }
+.pg-btn:disabled { opacity: .5; cursor: default; transform: none; box-shadow: none; }
+.pg-btn.ghost { background: #fff; color: var(--navy); border-color: rgba(0,0,0,.22); }
+.pg-btn.ghost:hover { border-color: var(--navy); }
+.pg-btn svg { width: 20px; height: 20px; fill: currentColor; flex: 0 0 auto; }
+
+/* Doc article inside the shell keeps a readable measure, no own title */
+.pg .doc { margin: 0; }
+
+/* Optional note under the WIP "coming soon" button */
+.wip-note { margin-top: 1.6rem; max-width: 560px; color: rgba(255,255,255,.72); font-size: .92rem; line-height: 1.6; }
+.wip-note a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+.wip-note strong { color: #fff; }

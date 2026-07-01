@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata = {
   title: "Technological Constitution of Aquí Estamos — Aqui Estamos Venezuela",
@@ -8,17 +9,15 @@ export const metadata = {
 
 export default function TechnologicalConstitutionEn() {
   return (
-    <main className="wrap doc">
-      <div className="lang-switch">
-        <Link href="/constitucion-tecnologica" hrefLang="es">
-          Traducir a español
-        </Link>
-      </div>
-      <div className="topbar">
-        <Link href="/en">&larr; Home</Link>
-      </div>
-      <h1>Technological Constitution of Aquí Estamos</h1>
-      <h2>Version 1.0 · Founding Document</h2>
+    <main className="pg">
+      <SiteHeader homeHref="/en" switchHref="/constitucion-tecnologica" switchLabel="Traducir a español" lang="en" />
+      <div className="pg-main lp-inner">
+        <div className="pg-hero">
+          <p className="pg-eyebrow">Founding Document</p>
+          <h1 className="pg-title">Technological Constitution of Aquí Estamos</h1>
+          <p className="pg-lead">Version 1.0 · Founding Document</p>
+        </div>
+        <article className="doc pg-body">
 
       <div className="callout" role="note">
         <strong>Preamble.</strong> Technology is not the subject of this
@@ -134,13 +133,9 @@ export default function TechnologicalConstitutionEn() {
         effective protection of human rights.
       </p>
 
-      <footer>
-        <Link href="/en">Back to home</Link>
-        &nbsp;·&nbsp;
-        <Link href="/en/child-protection">Child and Adolescent Protection</Link>
-        &nbsp;·&nbsp;
-        <Link href="/en/privacy">Search and Privacy Policy</Link>
-      </footer>
+      </article>
+      </div>
+      <SiteFooter lang="en" />
     </main>
   );
 }

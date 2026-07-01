@@ -1,8 +1,9 @@
 'use client';
-import Link from 'next/link';
 import { useState } from 'react';
 import { getConfig } from '@/lib/config';
 import { Alert, Spinner, Row } from '@/components/ui';
+import { SiteHeader } from '@/components/SiteHeader';
+import { SiteFooter } from '@/components/SiteFooter';
 import { isActiveToday } from '@/lib/jornada';
 import type { Volunteer } from '@/lib/types';
 
@@ -85,23 +86,19 @@ export default function Verificar() {
   }
 
   return (
-    <main className="wrap">
-      <div className="lang-switch">
-        <Link href="/en/verify" hrefLang="en">
-          Translate to English
-        </Link>
-      </div>
-      <div className="topbar">
-        <Link href="/">&larr; Inicio</Link>
-      </div>
-
-      <h1>Verificar Voluntario</h1>
-      <h2>
-        Confirma que una persona pertenece a la red de voluntarios buscándola por su cédula, nombre
-        o apellido.
-      </h2>
-
-      <div className="panel">
+    <main className="pg">
+      <SiteHeader homeHref="/" switchHref="/en/verify" switchLabel="Translate to English" lang="es" />
+      <div className="pg-main lp-inner">
+        <div className="pg-hero">
+          <p className="pg-eyebrow">Verificación</p>
+          <h1 className="pg-title">Verificar Voluntario</h1>
+          <p className="pg-lead">
+            Confirma que una persona pertenece a la red de voluntarios buscándola por su cédula,
+            nombre o apellido.
+          </p>
+        </div>
+        <div className="pg-body" style={{ maxWidth: 640 }}>
+          <div className="panel">
         <form onSubmit={onSubmit} autoComplete="off">
           <div className="field">
             <label htmlFor="q">Cédula, nombre o apellido</label>
@@ -140,7 +137,10 @@ export default function Verificar() {
             </>
           )}
         </div>
+          </div>
+        </div>
       </div>
+      <SiteFooter lang="es" />
     </main>
   );
 }

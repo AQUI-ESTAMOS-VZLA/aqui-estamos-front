@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata = {
   title:
@@ -9,20 +10,15 @@ export const metadata = {
 
 export default function ChildProtectionEn() {
   return (
-    <main className="wrap doc">
-      <div className="lang-switch">
-        <Link href="/proteccion-menores" hrefLang="es">
-          Traducir a español
-        </Link>
-      </div>
-      <div className="topbar">
-        <Link href="/en">&larr; Home</Link>
-      </div>
-      <h1>
-        Policy for the Protection of Children and Adolescents and the
-        Safeguarding of People in Situations of Vulnerability
-      </h1>
-      <h2>Aquí Estamos · Version 2.0 · Institutional document for public release</h2>
+    <main className="pg">
+      <SiteHeader homeHref="/en" switchHref="/proteccion-menores" switchLabel="Traducir a español" lang="en" />
+      <div className="pg-main lp-inner">
+        <div className="pg-hero">
+          <p className="pg-eyebrow">Protection</p>
+          <h1 className="pg-title">Policy for the Protection of Children and Adolescents and the Safeguarding of People in Situations of Vulnerability</h1>
+          <p className="pg-lead">Aquí Estamos · Version 2.0 · Institutional document for public release</p>
+        </div>
+        <article className="doc pg-body">
 
       <div className="callout" role="note">
         <strong>Reinforced protection of minors.</strong> As a current
@@ -234,11 +230,9 @@ export default function ChildProtectionEn() {
         </p>
       </section>
 
-      <footer>
-        <Link href="/en">Back to home</Link>
-        &nbsp;·&nbsp;
-        <Link href="/en/privacy">Search and Privacy Policy</Link>
-      </footer>
+      </article>
+      </div>
+      <SiteFooter lang="en" />
     </main>
   );
 }
