@@ -1,4 +1,5 @@
-import Link from 'next/link';
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata = {
   title: 'Política de Búsqueda y Privacidad — Aqui Estamos Venezuela',
@@ -8,17 +9,15 @@ export const metadata = {
 
 export default function Privacidad() {
   return (
-    <main className="wrap doc">
-      <div className="lang-switch">
-        <Link href="/en/privacy" hrefLang="en">
-          Translate to English
-        </Link>
-      </div>
-      <div className="topbar">
-        <Link href="/">&larr; Inicio</Link>
-      </div>
-      <h1>Política de Búsqueda y Privacidad</h1>
-      <h2>Cómo protegemos la información de las personas registradas.</h2>
+    <main className="pg">
+      <SiteHeader homeHref="/" switchHref="/en/privacy" switchLabel="Translate to English" lang="es" />
+      <div className="pg-main lp-inner">
+        <div className="pg-hero">
+          <p className="pg-eyebrow">Privacidad</p>
+          <h1 className="pg-title">Política de Búsqueda y Privacidad</h1>
+          <p className="pg-lead">Cómo protegemos la información de las personas registradas.</p>
+        </div>
+        <article className="doc pg-body">
 
       <section>
         <h3>¿Qué información es pública?</h3>
@@ -116,11 +115,9 @@ export default function Privacidad() {
         mediante un proceso de verificación.
       </p>
 
-      <footer>
-        <Link href="/">Volver al inicio</Link>
-        &nbsp;·&nbsp;
-        <Link href="/proteccion-menores">Protección de Niños, Niñas y Adolescentes</Link>
-      </footer>
+      </article>
+      </div>
+      <SiteFooter lang="es" />
     </main>
   );
 }

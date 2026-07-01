@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata = {
   title: "Constitución Tecnológica de Aquí Estamos — Aqui Estamos Venezuela",
@@ -8,17 +9,15 @@ export const metadata = {
 
 export default function ConstitucionTecnologica() {
   return (
-    <main className="wrap doc">
-      <div className="lang-switch">
-        <Link href="/en/technological-constitution" hrefLang="en">
-          Translate to English
-        </Link>
-      </div>
-      <div className="topbar">
-        <Link href="/">&larr; Inicio</Link>
-      </div>
-      <h1>Constitución Tecnológica de Aquí Estamos</h1>
-      <h2>Versión 1.0 · Documento Fundacional</h2>
+    <main className="pg">
+      <SiteHeader homeHref="/" switchHref="/en/technological-constitution" switchLabel="Translate to English" lang="es" />
+      <div className="pg-main lp-inner">
+        <div className="pg-hero">
+          <p className="pg-eyebrow">Documento Fundacional</p>
+          <h1 className="pg-title">Constitución Tecnológica de Aquí Estamos</h1>
+          <p className="pg-lead">Versión 1.0</p>
+        </div>
+        <article className="doc pg-body">
 
       <div className="callout" role="note">
         <strong>Preámbulo.</strong> La tecnología no es el objeto de este documento; las personas lo
@@ -128,13 +127,9 @@ export default function ConstitucionTecnologica() {
         continua y protección efectiva de los derechos humanos.
       </p>
 
-      <footer>
-        <Link href="/">Volver al inicio</Link>
-        &nbsp;·&nbsp;
-        <Link href="/proteccion-menores">Protección de Niños, Niñas y Adolescentes</Link>
-        &nbsp;·&nbsp;
-        <Link href="/privacidad">Política de Búsqueda y Privacidad</Link>
-      </footer>
+        </article>
+      </div>
+      <SiteFooter lang="es" />
     </main>
   );
 }

@@ -1,7 +1,8 @@
 "use client";
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { getConfig } from "@/lib/config";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { isActiveToday, normalizeText } from "@/lib/jornada";
 
 // Public colaboradores directory. Shows ONLY the volunteers active in today's
@@ -116,23 +117,23 @@ export default function Colaboradores() {
   }, [query, active]);
 
   return (
-    <main className="wrap dir-wrap">
-      <div className="topbar">
-        <Link href="/">&larr; Inicio</Link>
-      </div>
-
-      <h1>Colaboradores</h1>
-      <h2>
-        Voluntarios activos en la jornada de hoy
-        {!loading && !error ? (
-          <>
-            {" "}
-            · {active.length} activo{active.length === 1 ? "" : "s"}
-          </>
-        ) : null}
-      </h2>
-
-      <div className="dir-search">
+    <main className="pg">
+      <SiteHeader homeHref="/" lang="es" />
+      <div className="pg-main lp-inner">
+        <div className="pg-hero">
+          <p className="pg-eyebrow">Equipo</p>
+          <h1 className="pg-title">Colaboradores</h1>
+          <p className="pg-lead">
+            Voluntarios activos en la jornada de hoy
+            {!loading && !error ? (
+              <>
+                {" "}· {active.length} activo{active.length === 1 ? "" : "s"}
+              </>
+            ) : null}
+          </p>
+        </div>
+        <div className="pg-body">
+          <div className="dir-search">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.49 4.49 0 0 1 9.5 14z" />
         </svg>
@@ -216,6 +217,9 @@ export default function Colaboradores() {
           </div>
         </div>
       )}
+        </div>
+      </div>
+      <SiteFooter lang="es" />
     </main>
   );
 }

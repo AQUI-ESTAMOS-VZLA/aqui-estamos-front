@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { getConfig } from '@/lib/config';
 import { useAuthGate } from '@/components/useAuthGate';
 import { LoginGate } from '@/components/LoginGate';
+import { SiteHeader } from '@/components/SiteHeader';
 import { Alert, Spinner, Field } from '@/components/ui';
 import { Volunteer, AdminEntry } from '@/lib/types';
 
@@ -13,22 +14,32 @@ export default function AdminPage() {
 
   if (gate.status === 'loading')
     return (
-      <main className="wrap">
-        <Spinner>Cargando…</Spinner>
+      <main className="pg">
+        <SiteHeader homeHref="/" lang="es" />
+        <div className="pg-main lp-inner" style={{ padding: '3rem 0' }}>
+          <Spinner>Cargando…</Spinner>
+        </div>
       </main>
     );
 
   if (gate.status === 'out')
     return (
-      <main className="wrap">
-        <img className="hero-img" src="/assets/images/image01.jpg" alt="Aqui Estamos Venezuela" />
-        <h1>Panel de Administración</h1>
-        <LoginGate
-          title="Acceso restringido"
-          subtitle="Solo personas autorizadas pueden registrar y consultar voluntarios."
-          onSend={gate.sendMagicLink}
-          error={gate.error}
-        />
+      <main className="pg">
+        <SiteHeader homeHref="/" lang="es" />
+        <div className="pg-main lp-inner">
+          <div className="pg-hero">
+            <p className="pg-eyebrow">Administración</p>
+            <h1 className="pg-title">Panel de Administración</h1>
+          </div>
+          <div className="pg-body" style={{ maxWidth: 520 }}>
+            <LoginGate
+              title="Acceso restringido"
+              subtitle="Solo personas autorizadas pueden registrar y consultar voluntarios."
+              onSend={gate.sendMagicLink}
+              error={gate.error}
+            />
+          </div>
+        </div>
       </main>
     );
 
