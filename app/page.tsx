@@ -100,14 +100,13 @@ export default function Home() {
             </p>
           </div>
         </div>
+        {/* Flag stripe pinned to the bottom of the hero slide */}
+        <div className="lp-stripe" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
       </header>
-
-      {/* Flag stripe */}
-      <div className="lp-stripe" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-      </div>
 
       {/* ---------------- Actions (navy) ---------------- */}
       <section className="lp-section lp-navy lp-actions-section">
